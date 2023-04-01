@@ -18,11 +18,11 @@ class adminFactory extends Factory
     public function definition(): array
     {
         return [
-            'username' => fake()->userName(),
-            'ferst_name' => fake()->unique()->firstName(),
-            'last_name' => fake()->unique()->lastName(),
-            'password' => fake()->unique()->password(), // password
-            'token' => Str::random(10),
+            // 'username' => fake()->userName(),
+            // 'ferst_name' => fake()->unique()->firstName(),
+            // 'last_name' => fake()->unique()->lastName(),
+            // 'password' => fake()->unique()->password(), // password
+            // 'token' => Str::random(10),
         ];
     }
 }

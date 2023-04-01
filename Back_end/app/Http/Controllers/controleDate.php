@@ -62,7 +62,7 @@ class controleDate extends Controller
             "speciality" => $controlerDetails->pluck('speciality')->first(),
         ];
 
-        return  response()->json($controler);
+        return  json_encode($controler);
 
     }
 
