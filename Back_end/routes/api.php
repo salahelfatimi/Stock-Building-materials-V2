@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login',[controleDate::class,'login']);
 Route::post('controlerDetails',[controleDate::class,'controlerDetails']);
+
 Route::post('designationDetails',[controleDate::class,'designationDetails']);
 Route::post('ajouteDesignation',[controleDate::class,'ajouteDesignation']);
 Route::post('serachControlerValide',[controleDate::class,'serachControlerValide']);

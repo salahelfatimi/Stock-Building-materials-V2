@@ -19,8 +19,8 @@ class controlerloginFactory extends Factory
     public function definition(): array
     {
         return [
-            'username'=>fake()->unique()->name(),
-            'password'=>fake()->unique()->password(),
+            'username'=>fake()->unique()->userName(),
+            'password'=>fake()->unique()->numerify('####'),
             'idCard'=>fake()->unique()->randomElement(controlerregester::all())['idCard'],
             'token'=>Str::random(10),
 

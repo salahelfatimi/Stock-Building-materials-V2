@@ -106,7 +106,7 @@ function ControllerPage() {
 ///////////////////////////////////////////////////get desenation from database////////////////////////////////////////////////////////////////////////////////////////////
     useEffect(()=>{
         if(speciality !== ""){
-            axios.post("http://localhost/project_atlass/getDesignation.php",{speciality:speciality}).then((res)=>{
+            axios.post("http://127.0.0.1:8000/api/designationDetails",{speciality:speciality}).then((res)=>{
                 setDesignation(res.data.designationName)
             }).catch((err)=>{
                 console.log(err)
@@ -116,13 +116,6 @@ function ControllerPage() {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 
-    // ba9ii m3aha
-    // const arraydes=designation?.map((ele)=>({blocName:bloc,idControler:id.id,dateValidation:date,designation:ele.designationName,Quantity_Completed:0,The_remaining_quantity:0,Number_of_Persons:0}))
-    // console.log(arraydes)
-
-        // const arraydes=designation?.map((ele)=>({blocName:bloc,idControler:id.id,dateValidation:date,designation:ele.designationName,Quantity_Completed:0,The_remaining_quantity:0,Number_of_Persons:0}))
-    
-        // console.log(arraydes)
 
 ///////////////////////////////////////////////// on change input function //////////////////////////////////////////////////////////////////////////////////////////////////// // 
     const handlChange=(e)=>{
@@ -224,7 +217,7 @@ function ControllerPage() {
                             type="text"
                             onChange={(e) => setBloc(e.target.value)}
                             placeholder="Enter the Bloc"
-                            style={ validDone ===true ? {"pointerEvents":"none"} : null}
+                            style={ validDone ===true || blocentre===true ? {"pointerEvents":"none"} : null}
                             id="blocinput"
                         />
                        <button style={blocentre==false?{"pointerEvents":"none"}:null} className='absolute left-36 sm:left-60'>

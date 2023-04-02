@@ -14,12 +14,13 @@ class controleDate extends Controller
 {
 
     public function serachControlerValide(Request $request){
-        $chicklistDate=chicklist::where('idControler',$request['id'])->where('dateValidation',$request['date'])->get();
+
+        $chicklistDate=chicklist::where('idControler',$request->id)->where('dateValidation',$request->date)->get();
+
         $chicklistCount=count($chicklistDate);
         if( $chicklistCount > 0){
             $controler=[
-                "success" => true ,
-
+                "success" => true,
             ];
 
             return  json_encode($controler);
@@ -68,11 +69,11 @@ class controleDate extends Controller
 
     public function designationDetails(Request $request){
 
-        $designationDetails=designation::where('speciality',$request->speciality);
+
+        $designationDetails=designation::select('designationName')->where('speciality',$request->speciality)->get();
 
         $designation = [
-            "designationName" => $designationDetails->pluck('designationName')->all(),
-
+            "designationName" => $designationDetails
         ];
 
         return  json_encode($designation);
@@ -92,8 +93,8 @@ class controleDate extends Controller
         if( $controlerCount > 0){
                 $controler=[
                     "whoLogged"=>"controler",
-                    "idControler" => $controler->pluck('id')->first(),
-                    "token"=>$controler->pluck('token')->first()
+                    "idControler" => $controler->pluck('id'),
+                    "token"=>$controler->pluck('token')
                 ];
 
                 return  json_encode($controler);
@@ -104,7 +105,7 @@ class controleDate extends Controller
 
                 $admin=[
                     "whoLogged"=>"admin",
-                    "token"=>$admin->pluck('token')->first(),
+                    "token"=>$admin->pluck('token'),
                 ];
 
                 return  json_encode($admin);
