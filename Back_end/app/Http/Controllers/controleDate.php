@@ -93,8 +93,8 @@ class controleDate extends Controller
         if( $controlerCount > 0){
                 $controler=[
                     "whoLogged"=>"controler",
-                    "idControler" => $controler->pluck('id'),
-                    "token"=>$controler->pluck('token')
+                    "idControler" => $controler->value('id'),
+                    "token"=>$controler->value('token')
                 ];
 
                 return  json_encode($controler);
@@ -105,7 +105,7 @@ class controleDate extends Controller
 
                 $admin=[
                     "whoLogged"=>"admin",
-                    "token"=>$admin->pluck('token'),
+                    "token"=>$admin->value('token'),
                 ];
 
                 return  json_encode($admin);
