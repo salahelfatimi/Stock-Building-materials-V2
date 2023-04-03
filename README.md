@@ -19,6 +19,12 @@ Inventory management is a web application designed to streamline project managem
 
             cd Front_end
             npm install
+ 
+ 3. Run the migrations:
+ 
+            cd back_end
+            php artisan migrate
+ 
 
 #Usage
 
