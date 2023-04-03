@@ -6,7 +6,7 @@ Inventory management is a web application designed to streamline project managem
 
 1. Clone the repository from GitHub:
 
-            git clone https://github.com/{your-username}/Stock-Building-Materials-V2.git
+            git clone https://github.com/salahelfatimi/Stock-Building-materials-V2.git
 
 2. Install dependencies:
 
