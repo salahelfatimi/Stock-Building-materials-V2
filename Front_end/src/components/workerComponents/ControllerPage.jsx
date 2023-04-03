@@ -80,7 +80,7 @@ function ControllerPage() {
         if(items.length !== 0){
             axios.post("http://127.0.0.1:8000/api/ajouteDesignation",items)
             .then(res=>{
-                window.location.reload(false);
+                // window.location.reload(false);
             })
             .catch(err=>{
                 console.log(err)

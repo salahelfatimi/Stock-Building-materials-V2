@@ -190,7 +190,7 @@ export default function AllControlesTable({searchName,searchdate} ) {
     //                                 end                                    //
   /*--------------------------------------------------------------------------- */
 
-  if(workers.length > 0){
+  if(searchResult.length){
     return (
       <Box sx={{ width: '100%' }}>
         <Paper sx={{ width: '100%', mb: 2 }} style={{"borderRadius":"10px", "backgroundColor":"#1F2025"}} >
