@@ -18,7 +18,7 @@ Inventory management is a web application designed to streamline project managem
 *For frontend folder in React:*
 
             cd Front_end
-            npm run dev
+            npm install
  
 *Run the migrations:*
  
@@ -36,7 +36,7 @@ Inventory management is a web application designed to streamline project managem
 **2. Start the frontend server:**
 
             cd Front_end
-            npm start
+            npm run dev
 
 **3. Open the web application in your browser by visiting :**
 
