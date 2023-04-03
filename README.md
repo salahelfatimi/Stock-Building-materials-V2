@@ -31,7 +31,7 @@ This project was built using the following technologies:
  
 *Run the migrations:*
  
-            cd back_end
+            cd Back_end
             php artisan migrate
  
 # Default Admin Login Credentials
