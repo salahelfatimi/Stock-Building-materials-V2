@@ -24,7 +24,7 @@ class controleDate extends Controller
             ];
 
             return  json_encode($controler);
-    }
+        }
 
     }
 
@@ -94,21 +94,20 @@ class controleDate extends Controller
                     "idControler" => $controler->value('id'),
                     "token"=>$controler->value('token')
                 ];
-
                 return  json_encode($controler);
-        }
 
-
-        if($adminCount > 0){
-
+        }else if($adminCount > 0){
                 $admin=[
                     "whoLogged"=>"admin",
                     "token"=>$admin->value('token'),
                 ];
-
                 return  json_encode($admin);
 
-
+        }else{
+            $valid=[
+                "success" => false,
+            ];
+            return  json_encode($valid);
         }
     }
 }
