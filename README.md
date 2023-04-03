@@ -34,7 +34,7 @@ Inventory management is a web application designed to streamline project managem
 
 3. Open the web application in your browser by visiting :
 
-            [http://127.0.0.1:5173/]
+      [http://127.0.0.1:5173/]
 
 #Contributing
 
