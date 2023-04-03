@@ -10,17 +10,17 @@ Inventory management is a web application designed to streamline project managem
 
 **2. Install dependencies:**
 
-*1. For backend folder in Laravel:*
+*For backend folder in Laravel:*
 
             cd Back_end
             composer install
 
-2. For frontend folder in React:
+*For frontend folder in React:*
 
             cd Front_end
             npm install
  
-3. Run the migrations:
+*Run the migrations:*
  
             cd back_end
             php artisan migrate
@@ -28,17 +28,17 @@ Inventory management is a web application designed to streamline project managem
 
 # Usage
 
-1. Start the backend server:
+**1. Start the backend server:**
 
             cd Back_end
             php artisan serve
 
-2. Start the frontend server:
+**2. Start the frontend server:**
 
             cd Front_end
             npm start
 
-3. Open the web application in your browser by visiting :
+**3. Open the web application in your browser by visiting :**
 
       [http://127.0.0.1:5173/]
 
