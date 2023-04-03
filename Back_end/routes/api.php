@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\adminDate;
-use App\Http\Controllers\controleDate;
 use Illuminate\Http\Request;
+use App\Http\Controllers\adminDate;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\controleDate;
 
 /*
 |--------------------------------------------------------------------------
