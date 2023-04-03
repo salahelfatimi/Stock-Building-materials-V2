@@ -38,7 +38,7 @@ This project was built using the following technologies:
 
 After running the database migrations, you can login to the admin account with the following credentials:
 
-- Username: Root
+- Username: root
 - Password: 1234
 
 Please make sure to change the admin login credentials as soon as possible for security purposes.
