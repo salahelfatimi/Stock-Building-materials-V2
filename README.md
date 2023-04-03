@@ -4,11 +4,11 @@ Inventory management is a web application designed to streamline project managem
 
 # Installation
 
-1. Clone the repository from GitHub:
+# 1. Clone the repository from GitHub:
 
             git clone https://github.com/salahelfatimi/Stock-Building-materials-V2.git
 
-2. Install dependencies:
+# 2. Install dependencies:
 
 1. For backend folder in Laravel:
 
@@ -20,7 +20,7 @@ Inventory management is a web application designed to streamline project managem
             cd Front_end
             npm install
  
- 3. Run the migrations:
+3. Run the migrations:
  
             cd back_end
             php artisan migrate
