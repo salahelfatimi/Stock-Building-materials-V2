@@ -217,7 +217,7 @@ export default function AllControlesTable({searchName,searchdate} ) {
                         hover
                         // onClick={(event) => handleClick(event, row.name)}
                         tabIndex={-1}
-                        key={row.name}
+                        key={index}
                       >
                         <TableCell component="th" id={labelId} scope="row" style={{ paddingLeft: "33px","color":"#fff"}}>{row.name}</TableCell>
                         <TableCell align="center" style={{"color":"#fff"}}> {row.Id_card}</TableCell>

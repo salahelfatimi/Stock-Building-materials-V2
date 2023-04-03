@@ -41,11 +41,11 @@ class controleDate extends Controller
             $chicklist->dateValidation=$Designation['dateValidation'];
             $chicklist->save();
         }
-
+        $firstDesignation = array_slice(array_values($allDesignation), 0, 1)[0];
         $daysworked=new daysworked();
-        $daysworked->idControler=$allDesignation['idControler'];
-        $daysworked->dateValidation=$allDesignation['dateValidation'];
-        $daysworked->blocName=$allDesignation['blocName'];
+        $daysworked->idControler=$firstDesignation['idControler'];
+        $daysworked->dateValidation=$firstDesignation['dateValidation'];
+        $daysworked->blocName=$firstDesignation['blocName'];
         $daysworked->save();
 
     }

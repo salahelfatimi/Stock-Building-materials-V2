@@ -48,7 +48,7 @@ function ControllerPage() {
         }).catch((err)=>{
             console.log(err)
         })
-    },[id])
+    },[])
     
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 
@@ -80,7 +80,7 @@ function ControllerPage() {
         if(items.length !== 0){
             axios.post("http://127.0.0.1:8000/api/ajouteDesignation",items)
             .then(res=>{
-                window.location.reload()
+                window.location.reload(false);
             })
             .catch(err=>{
                 console.log(err)
@@ -97,7 +97,7 @@ function ControllerPage() {
             console.log(err)
         })
 
-    },[date,id])
+    },[date])
     
 //////////////////////////////////////////////////////////////////// obejet par input of designation/////////////////////////////////////////////////////////////////////////////////////////
     const [eachItem , setEachItem] = useState({blocName:bloc,idControler:id.id,dateValidation:date,designation:"",Quantity_Completed:0,The_remaining_quantity:0,Number_of_Persons:0})

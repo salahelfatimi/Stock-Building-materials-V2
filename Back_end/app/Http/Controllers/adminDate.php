@@ -18,7 +18,7 @@ class adminDate extends Controller
 
 
     public function Countcontrolerqty(Request $request){
-        $Countcontrolerqty=chicklist::where('id', $request->id)
+        $Countcontrolerqty=chicklist::where('idControler', $request->id)
         ->groupBy('designation')
         ->select('designation',
                 DB::raw('SUM(qtyCompleted) as qtyCompleted'),
@@ -54,7 +54,7 @@ class adminDate extends Controller
         $workerDetailsParMonth = daysworked::with('controlerregesters')
 
         ->where(DB::raw("(DATE_FORMAT(dateValidation, '%Y-%m'))"), '=', $date)->get();
-        
+
         $controlerregestersArray = $workerDetailsParMonth->pluck('controlerregesters')->flatten()->toArray();
 
         return json_encode($controlerregestersArray);

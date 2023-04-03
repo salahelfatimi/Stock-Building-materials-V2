@@ -18,11 +18,13 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([ designations::class]);
         $this->call([ admin::class]);
-        \App\Models\controlerregester::factory(20)->create();
-        \App\Models\controlerlogin::factory(20)->create();
-        \App\Models\chicklist::factory(20)->create();
+        $this->call([ controlerregester::class]);
+        $this->call([ controlerlogin::class]);
+        // \App\Models\controlerregester::factory(20)->create();
+        // \App\Models\controlerlogin::factory(20)->create();
+        // \App\Models\chicklist::factory(20)->create();
 
-        \App\Models\daysworked::factory(20)->create();
+        // \App\Models\daysworked::factory(20)->create();
 
 
         // \App\Models\User::factory()->create([
