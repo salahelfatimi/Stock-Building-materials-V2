@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\controlerlogin as controlerlogins;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use App\Models\controlerlogin as controlerlogins;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class controlerlogin extends Seeder
@@ -14,24 +15,24 @@ class controlerlogin extends Seeder
     public function run(): void
     {
         controlerlogins::create([
-            'username'=>'king',
+            'username'=>'user1',
             'password'=>'123',
             'idCard'=>'EE1234',
-            'token'=>'qwe123',
+            'token'=> Str::random(10),
 
         ]);
         controlerlogins::create([
-            'username'=>'king1',
+            'username'=>'user2',
             'password'=>'123',
             'idCard'=>'EE12345',
-            'token'=>'qwe1234',
+            'token'=> Str::random(10),
 
         ]);
         controlerlogins::create([
-            'username'=>'king1',
+            'username'=>'user3',
             'password'=>'123',
             'idCard'=>'EE123456',
-            'token'=>'qwe12345',
+            'token'=> Str::random(10),
 
         ]);
     }
