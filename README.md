@@ -8,28 +8,23 @@ Inventory management is a web application designed to streamline project managem
 
 git clone https://github.com/{your-username}/Stock-Building-Materials-V2.git
 
-
 2. Install dependencies:
 
 For backend folder in Laravel:
-
 cd Back_end
 composer install
 
 For frontend folder in React:
-
 cd Front_end
 npm install
 
 #Usage
 
 1. Start the backend server:
-
 cd Back_end
 php artisan serve
 
 2. Start the frontend server:
- 
 cd Front_end
 npm start
 
