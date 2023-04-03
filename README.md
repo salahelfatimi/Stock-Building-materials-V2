@@ -57,7 +57,7 @@ Please make sure to change the admin login credentials as soon as possible for s
 
 **3. Open the web application in your browser by visiting :**
 
-      [http://127.0.0.1:5173/]
+            http://127.0.0.1:5173/
 
 # Contributing
 
