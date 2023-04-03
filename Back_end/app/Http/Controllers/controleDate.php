@@ -29,25 +29,23 @@ class controleDate extends Controller
     }
 
     public function ajouteDesignation(Request $request){
-        $request = $request->all();
-        foreach ($request as $request) {
-        $chicklist=new chicklist();
-        $chicklist->designation=$request['designation'];
-        $chicklist->qtyCompleted=$request['Quantity_Completed'];
-        $chicklist->remainingQty=$request['The_remaining_quantity'];
-        $chicklist->personsNumber=$request['Number_of_Persons'];
-        $chicklist->blocName=$request['blocName'];
-        $chicklist->idControler=$request['idControler'];
-        $chicklist->dateValidation=$request['dateValidation'];
-        $chicklist->save();
-
-
+        $allDesignation = $request->all();
+        foreach ($allDesignation as $Designation) {
+            $chicklist=new chicklist();
+            $chicklist->designation=$Designation['designation'];
+            $chicklist->qtyCompleted=$Designation['Quantity_Completed'];
+            $chicklist->remainingQty=$Designation['The_remaining_quantity'];
+            $chicklist->personsNumber=$Designation['Number_of_Persons'];
+            $chicklist->blocName=$Designation['blocName'];
+            $chicklist->idControler=$Designation['idControler'];
+            $chicklist->dateValidation=$Designation['dateValidation'];
+            $chicklist->save();
         }
 
         $daysworked=new daysworked();
-        $daysworked->idControler=$request['idControler'];
-        $daysworked->dateValidation=$request['dateValidation'];
-        $daysworked->blocName=$request['blocName'];
+        $daysworked->idControler=$allDesignation['idControler'];
+        $daysworked->dateValidation=$allDesignation['dateValidation'];
+        $daysworked->blocName=$allDesignation['blocName'];
         $daysworked->save();
 
     }

@@ -124,7 +124,7 @@ export default function AdminTable(props) {
   React.useEffect(()=>{
    //------------------------------ if not serach found ---------------------------------------------------------
     if(blocName === ""  && datesearch===""  ){
-      axios.post("http://localhost/project_atlass/detailsControler.php",id).then(res=>{
+      axios.post("http://127.0.0.1:8000/api/Countcontrolerqty",id).then(res=>{
         setWorkerDetails(res.data)
       }).catch(err=>{
         console.error(err)

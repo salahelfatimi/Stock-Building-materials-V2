@@ -23,7 +23,7 @@ export default function DetailsPage() {
   const blocName = new URLSearchParams(location.search).get('bloc')
 
   React.useEffect(()=>{
-    axios.post("http://localhost/project_atlass/getControlerInfo.php",id).then(res=>{
+    axios.post("http://127.0.0.1:8000/api/getControlerInfo",id).then(res=>{
       if(res.data.message === 'good'){
         setWorkerDetails(res.data.controlerinfo)
       }else{
@@ -51,7 +51,7 @@ export default function DetailsPage() {
                 <select defaultValue="all_bloc"  onChange={(e) => setSearchbloc(e.target.value)} className="bg-[#3C3D42] p-3  h-9 sm:w-64 text-center rounded-xl font-mono  font-medium focus:outline none  text-white text-xs ">
                   <option value=''>All Bloc</option>
                   {
-                    workerDetails?.map((ele,index)=>(
+                    workerDetails['daysworked']?.map((ele,index)=>(
                       <option value={ele.blocName} key={index}>{ele.blocName}</option>
                     ))
                   }
@@ -64,7 +64,7 @@ export default function DetailsPage() {
             <div>
             <button onClick={() => setShow(!show)} className="flex gap-1 items-center ">
                 <span className="text-center font-mono font-extrabold text-white uppercase hover:text-[#b1b5ca]">
-                  {workerDetails[0]?.fullName}
+                  {workerDetails?.fullName}
                 </span>
               </button>
               <div className={`absolute right-4  mt-4  bg-[#4C4D53] py-6 rounded-lg z-40  ${ show == false ? "hidden" : "block"}`}>
@@ -72,31 +72,31 @@ export default function DetailsPage() {
                   <div className="flex gap-2 items-center">
                       <PhoneIcon style={{'fontSize':"25px","marginRight":"5px","color":"#fff"}}/>
                       <span className="font-mono  text-white">
-                        <span className="font-semibold">Phone:</span>  {workerDetails[0]?.phoneNum}
+                        <span className="font-semibold">Phone:</span>  {workerDetails?.phoneNum}
                       </span>
                   </div>
                   <div className="flex gap-2 items-center">
                     <MailOutlineRoundedIcon style={{'fontSize':"25px","marginRight":"5px","color":"#fff"}}/>
                     <span className="font-mono  text-white">
-                    <span className="font-semibold">Email:</span>  {workerDetails[0]?.email}
+                    <span className="font-semibold">Email:</span>  {workerDetails?.email}
                     </span>
                   </div>
                   <div className="flex gap-2 items-center">
                     <LocationOnOutlinedIcon style={{'fontSize':"25px","marginRight":"5px","color":"#fff"}}/>
                     <span className="font-mono  text-white">
-                    <span className="font-semibold">Address:</span>  {workerDetails[0]?.Address}
+                    <span className="font-semibold">Address:</span>  {workerDetails?.Address}
                     </span>
                   </div>
                   <div className="flex gap-2 items-center">
                     <EngineeringOutlinedIcon style={{'fontSize':"25px","marginRight":"5px","color":"#fff"}}/>
                     <span className="font-mono  text-white">
-                    <span className="font-semibold">Specialty:</span>  {workerDetails[0]?.speciality}
+                    <span className="font-semibold">Specialty:</span>  {workerDetails?.speciality}
                     </span>
                   </div>
                   <div className="flex gap-2 items-center">
                     <WorkHistoryIcon style={{'fontSize':"25px","marginRight":"5px","color":"#fff"}}/>
                     <span className="font-mono  text-white">
-                    <span className="font-semibold">Date start work:</span>  {workerDetails[0]?.dateStart}
+                    <span className="font-semibold">Date start work:</span>  {workerDetails?.dateStart}
                     </span>
                   </div>
                 </div>

@@ -20,16 +20,6 @@ export default function BlocPage() {
                   placeholder="Search for bloc ... "
                 />
               </div>
-              {/* <div className="flex gap-4 items-center">
-                <select
-                  defaultValue="all_bloc"
-                  onChange={(e) => setSearchbloc(e.target.value)}
-                  className="bg-[#3C3D42] p-3  h-9 sm:w-44 text-center rounded-xl font-mono  font-medium focus:outline none  text-white text-xs"
-                >
-                  <option value="all_bloc">All Bloc</option>
-                  <option value="1">1</option>
-                </select>
-              </div> */}
             </div>
           </section>
           <BlocTable searchnmame={searchNmame}/>

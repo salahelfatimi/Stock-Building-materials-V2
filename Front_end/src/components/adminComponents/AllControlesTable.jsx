@@ -116,16 +116,17 @@ export default function AllControlesTable({searchName,searchdate} ) {
  
   React.useEffect(()=>{
     if(searchName === "" && searchdate===""){
-      axios.get("http://localhost/project_atlass/getWorkers.php").then(res=>{
-        setWorkers(res.data)
+      axios.get("http://127.0.0.1:8000/api/workerDetails").then(res=>{
         setSearchResult(res.data)
+        setWorkers(res.data)
+       
       }).catch(err=>{
         console.error(err);
       })
     }else if (searchdate !=="" && searchName === "" ){
-      axios.post("http://localhost/project_atlass/getControlerParDate.php",{date:searchdate}).then(res=>{
+      axios.post("http://127.0.0.1:8000/api/workerDetailsParMonth",{date:searchdate}).then(res=>{
         const result = res.data.filter((v,i) => {
-          return res.data.map((val)=> val.idControler).indexOf(v.idControler) == i
+          return res.data.map((val)=> val.id).indexOf(v.id) == i
         })
         setSearchResult(result)
       }).catch(err=>{
@@ -137,7 +138,7 @@ export default function AllControlesTable({searchName,searchdate} ) {
       setSearchResult(search);
       
     }else if (searchName !== "" && searchdate !==""){
-      axios.post("http://localhost/project_atlass/getControlerParDate.php",{date:searchdate}).then(res=>{
+      axios.post("http://127.0.0.1:8000/api/workerDetailsParMonth",{date:searchdate}).then(res=>{
         const regex = new RegExp(searchName.toLowerCase(), 'g');
         const search = res.data.filter((ele) => ele.fullName.toLowerCase().match(regex));
         setSearchResult(search);
@@ -152,7 +153,7 @@ export default function AllControlesTable({searchName,searchdate} ) {
   /*----------------------------show data workers in table-------------------- */
 
     var rows = searchResult?.map(ele=>(
-      createData(ele.fullName,ele.idCard, ele.phoneNum , ele.speciality, <NavLink to={`../DetailsPage#${ele.idControler}`} className="hover:underline decoration-solid hover:text-[#3471ff]">see more details</NavLink>)
+      createData(ele.fullName,ele.idCard, ele.phoneNum , ele.speciality, <NavLink to={`../DetailsPage#${ele.id}`} className="hover:underline decoration-solid hover:text-[#3471ff]">see more details</NavLink>)
     ));
   
   /*-----------------------------------end------------------------------------*/
@@ -189,7 +190,7 @@ export default function AllControlesTable({searchName,searchdate} ) {
     //                                 end                                    //
   /*--------------------------------------------------------------------------- */
 
-  if(rows.length > 0){
+  if(workers.length > 0){
     return (
       <Box sx={{ width: '100%' }}>
         <Paper sx={{ width: '100%', mb: 2 }} style={{"borderRadius":"10px", "backgroundColor":"#1F2025"}} >
