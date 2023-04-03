@@ -34,6 +34,14 @@ This project was built using the following technologies:
             cd back_end
             php artisan migrate
  
+# Default Admin Login Credentials
+
+After running the database migrations, you can login to the admin account with the following credentials:
+
+- Username: Root
+- Password: 1234
+
+Please make sure to change the admin login credentials as soon as possible for security purposes.
 
 # Usage
 
