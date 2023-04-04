@@ -40,7 +40,8 @@ export default function Login() {
 
   return (
     <div className=" flex  justify-center items-center h-screen text-white p-4">
-      <div className=" space-y-8 ">
+      <div className=" space-y-4 ">
+     
         <div>
           <h1 className=" text-center font-extrabold font-mono text-3xl">
             Login
@@ -49,12 +50,13 @@ export default function Login() {
         {
           valid === false
           ?
-            <ul style={{"backgroundColor":"#f31c40" , "fontSize":"18px","padding":"10px"}}>
-              <li>incorrect username or password. try again</li>
+            <ul  className=" bg-[#f31c40] px-10 py-2  rounded-md font-semibold text-center">
+              <li>incorrect username or password<span className=" block ">try again</span></li>
             </ul>
           : 
             null
         }
+       
         <div  className="space-y-4">
           <div>
             <label htmlFor="username" className=" text-lg font-mono ">
