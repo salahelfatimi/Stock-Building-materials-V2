@@ -26,8 +26,6 @@ export default function DetailsPage() {
     axios.post("http://127.0.0.1:8000/api/getControlerInfo",id).then(res=>{
       if(res.data.message === 'good'){
         setWorkerDetails(res.data.controlerinfo)
-      }else{
-        setError(true)
       }
     }).catch(err=>{
       console.error(err)
@@ -40,7 +38,7 @@ export default function DetailsPage() {
   const date=year+"-"+month
 
 
-  if(error === false){
+ 
     return (
       <div>
         <Nav />
@@ -107,16 +105,5 @@ export default function DetailsPage() {
         </div>
       </div>
     );
-  }else{
-    return(
-      <>
-        <Nav/>
-        <div className='flex items-center justify-center md:h-96 h-52 bg-[#3C3D42] rounded-md mx-2'>
-          <span className='md:text-2xl font-bold text-[#202224] text-sm'>
-            There are no details because this worker did not work anywhere
-          </span>
-        </div>
-      </>
-    )
   }
-}
+

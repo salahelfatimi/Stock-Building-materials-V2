@@ -30,3 +30,6 @@ Route::get('workerDetails',[adminDate::class,'workerDetails']);
 Route::post('workerDetailsParMonth',[adminDate::class,'workerDetailsParMonth']);
 Route::post('Countcontrolerqty',[adminDate::class,'Countcontrolerqty']);
 Route::post('getControlerInfo',[adminDate::class,'getControlerInfo']);
+Route::post('CountcontrolerqtyParBloc',[adminDate::class,'CountcontrolerqtyParBloc']);
+Route::post('CountcontrolerqtyParDate',[adminDate::class,'CountcontrolerqtyParDate']);
+Route::post('CountcontrolerqtyParDateBloc',[adminDate::class,'CountcontrolerqtyParDateBloc']);

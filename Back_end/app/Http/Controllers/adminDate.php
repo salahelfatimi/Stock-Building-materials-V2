@@ -18,12 +18,65 @@ class adminDate extends Controller
 
 
     public function Countcontrolerqty(Request $request){
-        $Countcontrolerqty=chicklist::where('idControler', $request->id)
+
+        $Countcontrolerqty=chicklist::select('designation',
+            chicklist::raw('SUM(chicklists.qtyCompleted) as qtyCompleted'),
+            chicklist::raw('SUM(chicklists.qtyCompleted + chicklists.remainingQty) as toachife') ,
+            chicklist::raw('CEILING(SUM(chicklists.qtyCompleted) / COUNT(D.idControler)) as rendement'))
+
+        ->leftJoin('daysworkeds as D', 'D.idControler', '=', 'chicklists.idControler')
         ->groupBy('designation')
-        ->select('designation',
-                DB::raw('SUM(qtyCompleted) as qtyCompleted'),
-                DB::raw('SUM(qtyCompleted + remainingQty) as toachife'),
-                DB::raw('CEILING((SUM(qtyCompleted) / COUNT(DISTINCT idControler))) as rendement'))
+        ->where('chicklists.idControler',$request->id)
+        ->get();
+
+        return  json_encode($Countcontrolerqty);
+    }
+
+    public function CountcontrolerqtyParBloc(Request $request){
+
+        $Countcontrolerqty=chicklist::select('designation',
+            chicklist::raw('SUM(chicklists.qtyCompleted) as qtyCompleted'),
+            chicklist::raw('SUM(chicklists.qtyCompleted + chicklists.remainingQty) as toachife') ,
+            chicklist::raw('CEILING(SUM(chicklists.qtyCompleted) / COUNT(D.idControler)) as rendement'))
+
+        ->leftJoin('daysworkeds as D', 'D.idControler', '=', 'chicklists.idControler')
+        ->groupBy('designation')
+        ->where('chicklists.idControler',$request->id)
+        ->where('chicklists.blocName',$request->blocName)
+        ->get();
+
+        return  json_encode($Countcontrolerqty);
+    }
+
+
+    public function CountcontrolerqtyParDate(Request $request){
+        $date = $request->input('date');
+        $Countcontrolerqty=chicklist::select('designation',
+            chicklist::raw('SUM(chicklists.qtyCompleted) as qtyCompleted'),
+            chicklist::raw('SUM(chicklists.qtyCompleted + chicklists.remainingQty) as toachife') ,
+            chicklist::raw('CEILING(SUM(chicklists.qtyCompleted) / COUNT(D.idControler)) as rendement'))
+
+        ->leftJoin('daysworkeds as D', 'D.idControler', '=', 'chicklists.idControler')
+        ->groupBy('designation')
+        ->where('chicklists.idControler',$request->id)
+        ->where(DB::raw("(DATE_FORMAT(D.dateValidation, '%Y-%m'))"), '=', [$date])
+        ->get();
+
+        return  json_encode($Countcontrolerqty);
+    }
+
+    public function CountcontrolerqtyParDateBloc(Request $request){
+        $date = $request->input('date');
+        $Countcontrolerqty=chicklist::select('designation',
+            chicklist::raw('SUM(chicklists.qtyCompleted) as qtyCompleted'),
+            chicklist::raw('SUM(chicklists.qtyCompleted + chicklists.remainingQty) as toachife') ,
+            chicklist::raw('CEILING(SUM(chicklists.qtyCompleted) / COUNT(D.idControler)) as rendement'))
+
+        ->leftJoin('daysworkeds as D', 'D.idControler', '=', 'chicklists.idControler')
+        ->groupBy('designation')
+        ->where('chicklists.idControler',$request->id)
+        ->where('chicklists.blocName',$request->blocName)
+        ->where(DB::raw("(DATE_FORMAT(D.dateValidation, '%Y-%m'))"), '=', [$date])
         ->get();
 
         return  json_encode($Countcontrolerqty);
@@ -46,18 +99,18 @@ class adminDate extends Controller
 
     }
 
-
-
     public function workerDetailsParMonth(Request $request){
         $date = $request->input('date');
 
-        $workerDetailsParMonth = daysworked::with('controlerregesters')
+        $workerDetailsParMonth = controlerregester::
 
-        ->where(DB::raw("(DATE_FORMAT(dateValidation, '%Y-%m'))"), '=', $date)->get();
+        where(DB::raw("(DATE_FORMAT(dateStart, '%Y-%m'))"), '=', $date)->get();
 
-        $controlerregestersArray = $workerDetailsParMonth->pluck('controlerregesters')->flatten()->toArray();
 
-        return json_encode($controlerregestersArray);
 
-     }
+        return json_encode($workerDetailsParMonth);
+
+    }
+
+
 }

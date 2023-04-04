@@ -48,20 +48,20 @@ const headCells = [
     id: "quantity",
     numeric: true,
     disablePadding: false,
-    label: "Completed quantity",
+    label: "Completed Quantity",
   },
   
   {
     id: "achieve",
     numeric: true,
     disablePadding: false,
-    label: "Incomplete quantity",
+    label: "Total Quantity of Designation",
   },
   {
     id: "rendement",
     numeric: true,
     disablePadding: false,
-    label:"Rendement"
+    label:"Production Efficiency Ratio"
   },
 ];
 function EnhancedTableHead(props) {
@@ -118,8 +118,8 @@ export default function AdminTable(props) {
   const id = {id:parseInt(location.hash.slice(1))}
   const blocName = new URLSearchParams(location.search).get('bloc')===null ? blocserach : new URLSearchParams(location.search).get('bloc') ;
  
-  const parameterSend = {id:id , blocName:blocName , date:datesearch}
-  const parameterSendDate = {id:id ,date:datesearch}
+  const parameterSend = {id:id.id , blocName:blocName , date:datesearch}
+  const parameterSendDate = {id:id.id  ,date:datesearch}
  
   React.useEffect(()=>{
    //------------------------------ if not serach found ---------------------------------------------------------
@@ -133,7 +133,7 @@ export default function AdminTable(props) {
 
     //-------------------------------- if bloc found will search by bloc ----------------------------------------
     }else if(blocName !== "" && datesearch===""  ) {
-      axios.post("http://localhost/project_atlass/detailsBloc.php",parameterSend).then(res=>{
+      axios.post("http://127.0.0.1:8000/api/CountcontrolerqtyParBloc",parameterSend).then(res=>{
       setWorkerDetails(res.data)
       }).catch(err=>{
         console.error(err)
@@ -142,7 +142,7 @@ export default function AdminTable(props) {
 
     //-------------------------------- if date found will search by date -----------------------------------------
     }else if(datesearch!=="" && blocName === ""  ){
-      axios.post("http://localhost/project_atlass/detailsBlocDate.php",parameterSendDate).then(res=>{
+      axios.post("http://127.0.0.1:8000/api/CountcontrolerqtyParDate",parameterSendDate).then(res=>{
         setWorkerDetails(res.data)
        
         }).catch(err=>{
@@ -152,7 +152,7 @@ export default function AdminTable(props) {
 
     //-------------------------------- if bloc and date  found will search by bloc and date -------------------------
     }else if (datesearch!=="" && blocName !== "" ){
-      axios.post("http://localhost/project_atlass/detailsParBlocAndDate.php",parameterSend).then(res=>{
+      axios.post("http://127.0.0.1:8000/api/CountcontrolerqtyParDateBloc",parameterSend).then(res=>{
         setWorkerDetails(res.data)
        
         }).catch(err=>{
@@ -195,7 +195,7 @@ export default function AdminTable(props) {
     //                                 end                                    //
   /*--------------------------------------------------------------------------- */
 
-  if(rows.length > 0){
+  if(workerDetails.length){
     return (
       <Box sx={{ width: '100%' }}>
         <Paper sx={{ width: '100%', mb: 2 }} style={{"borderRadius":"10px", "backgroundColor":"#1F2025"}} >
