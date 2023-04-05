@@ -4,7 +4,7 @@ Inventory management is a web application designed to streamline project managem
 
 # Technologies Used
 
-This project was built using the following technologies:
+**This project was built using the following technologies:**
 
 - Laravel: A PHP web application framework used for back-end development
 - Vite: A build tool used for front-end development with React
