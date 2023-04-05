@@ -8,7 +8,6 @@ This project was built using the following technologies:
 
 - Laravel: A PHP web application framework used for back-end development
 - Vite: A build tool used for front-end development with React
-- React: A JavaScript library used for building user interfaces
 - Tailwind CSS: A utility-first CSS framework used for styling the application
 
 # Installation
