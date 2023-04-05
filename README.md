@@ -21,35 +21,35 @@ This project was built using the following technologies:
 
 *For backend folder in Laravel:*
 
- cd Back_end
- composer install
+    cd Back_end
+    composer install
 
 *For frontend folder in React:*
 
-            cd Front_end
-            npm install
+    cd Front_end
+    npm install
  
 *Run the migrations:*
  
-            cd Back_end
-            php artisan migrate
+    cd Back_end
+    php artisan migrate
  
 
 # Usage
 
 **1. Start the backend server:**
 
-            cd Back_end
-            php artisan serve
+    cd Back_end
+    php artisan serve
 
 **2. Start the frontend server:**
 
-            cd Front_end
-            npm run dev
+    cd Front_end
+    npm run dev
 
 **3. Open the web application in your browser by visiting :**
 
-            http://127.0.0.1:5173/
+    http://127.0.0.1:5173/
             
 # Default Admin Login Credentials
 
