@@ -15,7 +15,7 @@ This project was built using the following technologies:
 
 **1. Clone the repository from GitHub:**
 
-            git clone https://github.com/salahelfatimi/Stock-Building-materials-V2.git
+    git clone https://github.com/salahelfatimi/Stock-Building-materials-V2.git
 
 **2. Install dependencies:**
 
