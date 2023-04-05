@@ -21,8 +21,8 @@ This project was built using the following technologies:
 
 *For backend folder in Laravel:*
 
-            cd Back_end
-            composer install
+ cd Back_end
+ composer install
 
 *For frontend folder in React:*
 
