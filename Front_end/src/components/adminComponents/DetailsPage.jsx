@@ -7,6 +7,7 @@ import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import {  useLocation } from "react-router-dom";
 import PhoneIcon from '@mui/icons-material/Phone';
+
 import axios from "axios";
 
 export default function DetailsPage() {
@@ -15,7 +16,6 @@ export default function DetailsPage() {
   const [searchdate, setSearchdate] = useState("");
   const [searchbloc, setSearchbloc] = useState("");
   const [workerDetails , setWorkerDetails] = React.useState([])
-  const [error , setError] = useState(false)
   const location = useLocation();
   
  
@@ -98,7 +98,7 @@ export default function DetailsPage() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </div>           
             </div>
           </section>
           <DetailsPageTable searchbloc={searchbloc}  searchdate={searchdate}/>

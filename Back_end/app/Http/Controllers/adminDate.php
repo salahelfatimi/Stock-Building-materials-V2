@@ -39,10 +39,14 @@ class adminDate extends Controller
             chicklist::raw('SUM(chicklists.qtyCompleted + chicklists.remainingQty) as toachife') ,
             chicklist::raw('CEILING(SUM(chicklists.qtyCompleted) / COUNT(D.idControler)) as rendement'))
 
-        ->leftJoin('daysworkeds as D', 'D.idControler', '=', 'chicklists.idControler')
+        ->leftJoin('daysworkeds as D',function($join){
+            $join->on( 'D.idControler', '=','chicklists.idControler')
+            ->on('chicklists.blocName','=','D.blocName');
+        })
         ->groupBy('designation')
         ->where('chicklists.idControler',$request->id)
         ->where('chicklists.blocName',$request->blocName)
+
         ->get();
 
         return  json_encode($Countcontrolerqty);
@@ -56,7 +60,10 @@ class adminDate extends Controller
             chicklist::raw('SUM(chicklists.qtyCompleted + chicklists.remainingQty) as toachife') ,
             chicklist::raw('CEILING(SUM(chicklists.qtyCompleted) / COUNT(D.idControler)) as rendement'))
 
-        ->leftJoin('daysworkeds as D', 'D.idControler', '=', 'chicklists.idControler')
+            ->leftJoin('daysworkeds as D',function($join){
+                $join->on( 'D.idControler', '=','chicklists.idControler')
+                ->on('chicklists.blocName','=','D.blocName');
+            })
         ->groupBy('designation')
         ->where('chicklists.idControler',$request->id)
         ->where(DB::raw("(DATE_FORMAT(D.dateValidation, '%Y-%m'))"), '=', [$date])
@@ -72,7 +79,10 @@ class adminDate extends Controller
             chicklist::raw('SUM(chicklists.qtyCompleted + chicklists.remainingQty) as toachife') ,
             chicklist::raw('CEILING(SUM(chicklists.qtyCompleted) / COUNT(D.idControler)) as rendement'))
 
-        ->leftJoin('daysworkeds as D', 'D.idControler', '=', 'chicklists.idControler')
+            ->leftJoin('daysworkeds as D',function($join){
+                $join->on( 'D.idControler', '=','chicklists.idControler')
+                ->on('chicklists.blocName','=','D.blocName');
+            })
         ->groupBy('designation')
         ->where('chicklists.idControler',$request->id)
         ->where('chicklists.blocName',$request->blocName)

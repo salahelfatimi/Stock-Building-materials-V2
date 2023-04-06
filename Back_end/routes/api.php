@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
+
 use App\Http\Controllers\adminDate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\controleDate;
-use App\Http\Controllers\PdfController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,4 +37,3 @@ Route::post('CountcontrolerqtyParDateBloc',[adminDate::class,'CountcontrolerqtyP
 
 
 
-Route::get('generate-pdf', [PdfController::class, 'generatePdf']);

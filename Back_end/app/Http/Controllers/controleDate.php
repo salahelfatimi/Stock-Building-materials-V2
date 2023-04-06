@@ -103,11 +103,14 @@ class controleDate extends Controller
                 ];
                 return  json_encode($admin);
 
-        }else{
+        }else {
+            if($request->username!='' && $request->password!=''){
             $valid=[
                 "success" => false,
             ];
             return  json_encode($valid);
-        }
+            }
+
+    }
     }
 }

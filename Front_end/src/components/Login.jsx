@@ -6,6 +6,10 @@ export default function Login() {
   const navigate = useNavigate();
   const [loginData , setLoginData] =useState({ username:"", password:"" });
   const [valid , setValid] = useState(true)
+  const [error , setError] = useState({
+    "username" : '' ,
+    "password"  : '' ,
+  })
 
   const handlChange=(e)=>{
     const name=e.target.name;
@@ -17,9 +21,24 @@ export default function Login() {
 
   function handelSbmite(){
 
+    const form = document.forms[0]
+    if(form.username.value==='' || form.password.value===''){
+      if(form.username.value===''){
+        setError({'username':'enter your username '})
+      }else if(form.password.value===''){
+        setError({'password':'enter your password '})
+      }
+    }
+   
+   
+
+
     axios.post("http://127.0.0.1:8000/api/login",loginData).then((res)=>{
+     
       if(res.data.success === false){
+
         setValid(false)
+
       }else{
         setValid(true)
         if(res.data.whoLogged === "admin"){
@@ -48,7 +67,7 @@ export default function Login() {
           </h1>
         </div>
         {
-          valid === false
+          valid === false 
           ?
             <ul  className=" bg-[#f31c40] px-10 py-2  rounded-md font-semibold text-center">
               <li>incorrect username or password<span className=" block ">try again</span></li>
@@ -57,7 +76,7 @@ export default function Login() {
             null
         }
        
-        <div  className="space-y-4">
+        <form  className="space-y-4">
           <div>
             <label htmlFor="username" className=" text-lg font-mono ">
               Username :
@@ -69,27 +88,33 @@ export default function Login() {
               name="username"
               className="bg-[#4B484C] w-full h-10 rounded-md pl-2 focus:outline-none"
               autoComplete="off"
+
+              required
             />
+             <div>{error.username}</div>
           </div>
           <div>
             <label htmlFor="password" className=" text-lg font-mono ">
               Password :
             </label>
+
             <input
               onChange={(e)=>handlChange(e)}
               type="password"
               id="password"
               name="password"
               className="bg-[#4B484C] w-full h-10 rounded-md pl-2 focus:outline-none"
+              required
             />
+           <div>{error.password}</div>
           </div>
-          <div className="float-right">
+        </form>
+        <div className="float-right">
             <button onClick={handelSbmite} 
               className="bg-[#93FBA4] hover:bg-[#62ef7a] text-black py-2 px-8 rounded-md text-base font-medium transition duration-300">
               Login
             </button>
           </div>
-        </div>
       </div>
     </div>
   );
