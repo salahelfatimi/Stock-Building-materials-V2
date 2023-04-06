@@ -24,11 +24,15 @@ export default function Nav({reloadInChanges}) {
       <div className="w-full bg-[#1F2025] p-3 rounded-lg flex justify-between items-center">
         <div className="flex gap-4">
           <div className="flex items-center">
-            <img
-              src={Navcontr}
-              alt=""
-              className="w-12  bg-[#93FBA4] rounded-full"
-            />
+            <NavLink to="../OptionsPage">
+              <abbr title="return to OptionsPage">
+              <img
+                  src={Navcontr}
+                  alt=""
+                  className="w-12  bg-[#93FBA4] rounded-full"
+                />
+              </abbr>
+            </NavLink>
           </div>
           <div className="flex flex-col text-white">
             {

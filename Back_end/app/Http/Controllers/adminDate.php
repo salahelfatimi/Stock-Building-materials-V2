@@ -113,14 +113,8 @@ class adminDate extends Controller
         $date = $request->input('date');
 
         $workerDetailsParMonth = controlerregester::
-
         where(DB::raw("(DATE_FORMAT(dateStart, '%Y-%m'))"), '=', $date)->get();
-
-
-
         return json_encode($workerDetailsParMonth);
 
     }
-
-
 }

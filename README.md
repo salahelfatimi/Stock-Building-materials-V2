@@ -4,52 +4,51 @@ Inventory management is a web application designed to streamline project managem
 
 # Technologies Used
 
-This project was built using the following technologies:
+**This project was built using the following technologies:**
 
 - Laravel: A PHP web application framework used for back-end development
 - Vite: A build tool used for front-end development with React
-- React: A JavaScript library used for building user interfaces
 - Tailwind CSS: A utility-first CSS framework used for styling the application
 
 # Installation
 
 **1. Clone the repository from GitHub:**
 
-            git clone https://github.com/salahelfatimi/Stock-Building-materials-V2.git
+    git clone https://github.com/salahelfatimi/Stock-Building-materials-V2.git
 
 **2. Install dependencies:**
 
 *For backend folder in Laravel:*
 
-            cd Back_end
-            composer install
+    cd Back_end
+    composer install
 
 *For frontend folder in React:*
 
-            cd Front_end
-            npm install
+    cd Front_end
+    npm install
  
 *Run the migrations:*
  
-            cd Back_end
-            php artisan migrate
+    cd Back_end
+    php artisan migrate
  
 
 # Usage
 
 **1. Start the backend server:**
 
-            cd Back_end
-            php artisan serve
+    cd Back_end
+    php artisan serve
 
 **2. Start the frontend server:**
 
-            cd Front_end
-            npm run dev
+    cd Front_end
+    npm run dev
 
 **3. Open the web application in your browser by visiting :**
 
-            http://127.0.0.1:5173/
+    http://127.0.0.1:5173/
             
 # Default Admin Login Credentials
 
