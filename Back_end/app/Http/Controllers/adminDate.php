@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\chicklist;
 use App\Models\daysworked;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Models\controlerregester;
 use Illuminate\Support\Facades\DB;
@@ -115,6 +116,12 @@ class adminDate extends Controller
         $workerDetailsParMonth = controlerregester::
         where(DB::raw("(DATE_FORMAT(dateStart, '%Y-%m'))"), '=', $date)->get();
         return json_encode($workerDetailsParMonth);
+
+    }
+    public function getBlocInfo(){
+       $BlocInfo=daysworked::with('controlerregesters:id,speciality,fullName')->select('blocName','idControler')->get();
+
+        return  json_encode($BlocInfo);
 
     }
 }

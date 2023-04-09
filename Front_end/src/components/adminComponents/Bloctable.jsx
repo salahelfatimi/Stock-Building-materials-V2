@@ -113,7 +113,7 @@ export default function AdminTable(searchnmame) {
   /*-------------------------get data of all workers-------------------------*/
   React.useEffect(()=>{
     if (serachName===""){
-    axios.post("http://localhost/project_atlass/getBlocInfo.php").then(res=>{
+    axios.get("http://127.0.0.1:8000/api/getBlocInfo").then(res=>{
       setBlocWorker(res.data)
       setSearchResult(res.data)
     }).catch(err=>{
@@ -130,7 +130,7 @@ export default function AdminTable(searchnmame) {
   /*----------------------------show data workers in table-------------------- */
 
   const rows = searchResult?.map(ele=>(
-    createData(ele.blocName,ele.fullName, ele.speciality , <NavLink to={`../DetailsPage/?bloc=${ele.blocName}#${ele.idControler}`} className="hover:underline decoration-solid hover:text-[#3471ff]">see more details</NavLink>)
+    createData(ele.blocName, ele.controlerregesters.fullName, ele.controlerregesters.speciality , <NavLink to={`../DetailsPage/?bloc=${ele.blocName}#${ele.idControler}`} className="hover:underline decoration-solid hover:text-[#3471ff]">see more details</NavLink>)
   ));
   
   /*-----------------------------------end------------------------------------*/

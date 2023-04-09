@@ -9,6 +9,6 @@ class daysworked extends Model
 {
     use HasFactory;
     public function controlerregesters (){
-        return $this->hasMany(controlerregester::class,'id','idControler');
+        return $this->belongsTo(controlerregester::class,'idControler','id');
     }
 }

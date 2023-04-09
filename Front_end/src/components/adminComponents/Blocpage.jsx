@@ -4,7 +4,7 @@ import BlocTable from "./BlocTable"
 
 export default function BlocPage() {
   const [searchNmame, setSearchName] = useState("");
-  const [searchbloc, setSearchbloc] = useState("");
+  
   return (
     <div>
       <Nav />

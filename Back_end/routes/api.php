@@ -34,6 +34,7 @@ Route::post('getControlerInfo',[adminDate::class,'getControlerInfo']);
 Route::post('CountcontrolerqtyParBloc',[adminDate::class,'CountcontrolerqtyParBloc']);
 Route::post('CountcontrolerqtyParDate',[adminDate::class,'CountcontrolerqtyParDate']);
 Route::post('CountcontrolerqtyParDateBloc',[adminDate::class,'CountcontrolerqtyParDateBloc']);
+Route::get('getBlocInfo',[adminDate::class,'getBlocInfo']);
 
 
 
