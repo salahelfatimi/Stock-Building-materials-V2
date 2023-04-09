@@ -65,7 +65,7 @@ function EnhancedTableHead(props) {
   const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => { onRequestSort(event, property);};
   return (
-    <TableHead className="bg-[#3C3D42]">
+    <TableHead className="bg-[#3C3D42] ">
       <TableRow>
         {headCells.map((headCell) => (
           <TableCell

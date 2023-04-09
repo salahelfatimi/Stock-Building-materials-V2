@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Nav from "./NavAdmin";
-import BlocTable from "./BlocTable"
+import BlocTable from "./Bloctable";
 
 export default function BlocPage() {
   const [searchNmame, setSearchName] = useState("");
