@@ -18,8 +18,20 @@ export default function Nav({reloadInChanges}) {
         console.log(error);
       });
   },[reloadInChanges])
+  const handleClickOutside = (event) => {
 
+      setShow(false);
+    
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
   return (
+    
     <div className="p-2 relative ">
       <div className="w-full bg-[#1F2025] p-3 rounded-lg flex justify-between items-center">
         <div className="flex gap-4">

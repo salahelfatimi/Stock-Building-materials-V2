@@ -22,6 +22,20 @@ export default function DetailsPage() {
   const id = {id:parseInt(location.hash.slice(1))}
   const blocName = new URLSearchParams(location.search).get('bloc')
 
+  const handleClickOutside = (event) => {
+
+    setShow(false);
+  
+  };
+
+    
+  React.useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   React.useEffect(()=>{
     axios.post("http://127.0.0.1:8000/api/getControlerInfo",id).then(res=>{
       if(res.data.message === 'good'){
