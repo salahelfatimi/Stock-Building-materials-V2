@@ -12,7 +12,7 @@ export default function Nav({reloadInChanges}) {
   const [adminInfo , setAdminInfo] = useState([])
 
   useEffect(()=>{
-    axios.get('http://localhost/project_atlass/getAdminInfo.php').then((response) => {
+    axios.get('http://127.0.0.1:8000/api/getAdminInfo').then((response) => {
         setAdminInfo(response.data)
       }).catch((error)=> {
         console.log(error);

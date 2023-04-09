@@ -79,7 +79,7 @@ export default function AddNewControler() {
   // this execute whene admin click on button add new controler
   const AddNewController= async (e)=>{
     e.preventDefault();
-    await axios.post("http://localhost/project_atlass/addControler.php",{dataControler:dataControler , dataLogin:dataLogin})
+    await axios.post("http://127.0.0.1:8000/api/addControler",{dataControler:dataControler , dataLogin:dataLogin})
     .then((res)=>{
       setDataReturn(res.data)
     }).catch((err)=>{

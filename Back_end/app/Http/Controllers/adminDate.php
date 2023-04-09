@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\admin;
 use App\Models\chicklist;
+use App\Models\controlerlogin;
 use App\Models\daysworked;
 use Illuminate\Support\Arr;
+
 use Illuminate\Http\Request;
 use App\Models\controlerregester;
 use Illuminate\Support\Facades\DB;
@@ -123,5 +126,76 @@ class adminDate extends Controller
 
         return  json_encode($BlocInfo);
 
+    }
+    public function addControler( Request $request){
+        $IdidCard=controlerregester::where('idCard',$request['dataControler']['idCard'])->get();
+        $count=count($IdidCard);
+        if($count>0){
+            $returnData = [
+                "success" => false ,
+                "message" => "worker that he has this id card '".$request["dataControler"]["idCard"]."' already in database.",
+            ];
+            return  json_encode($returnData);
+        }else{
+
+            $token = openssl_random_pseudo_bytes(16);
+            $token = bin2hex($token);
+
+            $controlerregester=new controlerregester();
+            $controlerregester->fullName=$request->input('dataControler.fullName');
+            $controlerregester->idCard=$request->input('dataControler.idCard');
+            $controlerregester->Address=$request->input('dataControler.address');
+            $controlerregester->speciality=$request->input('dataControler.specialty');
+            $controlerregester->phoneNum=$request->input('dataControler.phoneNumber');
+            $controlerregester->email=$request->input('dataControler.email');
+            $controlerregester->dateStart=$request->input('dataControler.dateStart');
+            $controlerregester->save();
+            $controlerlogin=new controlerlogin();
+            $controlerlogin->username=$request->input('dataLogin.username');
+            $controlerlogin->password=$request->input('dataLogin.password');
+            $controlerlogin->idCard=$request->input('dataLogin.idCard');
+            $controlerlogin->token=$token;
+            $controlerlogin->save();
+
+            $returnData = [
+                "success" => true ,
+                "message" => "the worker is added successfully",
+            ];
+            echo json_encode($returnData);
+
+        }
+
+    }
+
+
+    public function getAdminInfo(){
+        $getAdminInfo=admin::all();
+        echo json_encode($getAdminInfo);
+    }
+
+    public function updateFullNameOfAdmin(Request $request){
+        $updateFullNameOfAdmin=admin::where('token',$request->token)->first();
+        $updateFullNameOfAdmin->ferst_name=$request->first_name;
+        $updateFullNameOfAdmin->last_name=$request->last_name;
+        $updateFullNameOfAdmin->save();
+    }
+    public function updateUsername(Request $request){
+        $updateUsername=admin::where('token',$request->token)->first();
+        $updateUsername->username=$request->username;
+        $updateUsername->save();
+    }
+    public function updatePassword(Request $request){
+
+        $updatePassword=admin::where('token',$request->token)->first();
+        $updatePassword->password=$request->password;
+        $updatePassword->save();
+
+        $returnData = [
+            "success" => true ,
+            "message" => "the password is updated successfully",
+        ];
+        echo json_encode($returnData);
+
+    
     }
 }

@@ -35,6 +35,11 @@ Route::post('CountcontrolerqtyParBloc',[adminDate::class,'CountcontrolerqtyParBl
 Route::post('CountcontrolerqtyParDate',[adminDate::class,'CountcontrolerqtyParDate']);
 Route::post('CountcontrolerqtyParDateBloc',[adminDate::class,'CountcontrolerqtyParDateBloc']);
 Route::get('getBlocInfo',[adminDate::class,'getBlocInfo']);
+Route::post('addControler',[adminDate::class,'addControler']);
+Route::get('getAdminInfo',[adminDate::class,'getAdminInfo']);
+Route::post('updateFullNameOfAdmin',[adminDate::class,'updateFullNameOfAdmin']);
+Route::post('updateUsername',[adminDate::class,'updateUsername']);
+Route::post('updatePassword',[adminDate::class,'updatePassword']);
 
 
 

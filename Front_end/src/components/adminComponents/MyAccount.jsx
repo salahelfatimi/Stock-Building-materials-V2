@@ -11,7 +11,7 @@ import axios from "axios";
 // this for style model
 const style = {
   position: 'absolute', top: '45%', left: '50%',
-  transform: 'translate(-50%, -50%)', width: 680,
+  transform: 'translate(-50%, -50%)',
   height:"auto" ,  bgcolor: 'background.paper',
   boxShadow: 24, p: 4,
   backgroundColor:"#26272C",
@@ -41,7 +41,7 @@ function MyAccount() {
   /*--------------------------all functions here-----------------*/
 
   useEffect(()=>{
-    axios.get('http://localhost/project_atlass/getAdminInfo.php').then((response) => {
+    axios.get('http://127.0.0.1:8000/api/getAdminInfo').then((response) => {
         setAdminInformation(response.data)
       }).catch((error)=> {
         console.log(error);
@@ -57,7 +57,7 @@ function MyAccount() {
         setErroreMsg(true)
     }else{
         const newFullName = {first_name:first_name , last_name:last_name ,token:localStorage.getItem("AdminToken")}
-        axios.post('http://localhost/project_atlass/updateFullNameOfAdmin.php',newFullName).then((res) => {
+        axios.post('http://127.0.0.1:8000/api/updateFullNameOfAdmin',newFullName).then((res) => {
           setReloadInChanges([...reloadInChanges , newFullName])
           handleClose()
           setErroreMsg(false)
@@ -73,11 +73,10 @@ function MyAccount() {
         setErroreMsg(true)
     }else{
         const newUsername = {username:username,token:localStorage.getItem("AdminToken")}
-        axios.post('http://localhost/project_atlass/updateUsername.php',newUsername).then((res) => {
+        axios.post('http://127.0.0.1:8000/api/updateUsername',newUsername).then((res) => {
           setReloadInChanges([...reloadInChanges , newUsername])
           handleClose()
           setErroreMsg(false)
-          console.log(res)
         }).catch((error)=> {
           console.log(error);
         });
@@ -91,7 +90,7 @@ function MyAccount() {
         setErroreMsg(true)
     }else{
       const newPassword = {password:new_password,token:localStorage.getItem("AdminToken")}
-      axios.post('http://localhost/project_atlass/updatePassword.php',newPassword).then((res) => {
+      axios.post('http://127.0.0.1:8000/api/updatePassword',newPassword).then((res) => {
         if(res.data.success){
           setReloadInChanges([...reloadInChanges , newPassword])
           handleClose()
@@ -112,7 +111,7 @@ function MyAccount() {
     return (
       <>
       <Nav reloadInChanges={reloadInChanges}/>
-      <div className=" bg-[#1F2025] w-2/3 m-auto text-white rounder-lg mt-7 h-96 px-24 py-7">
+      <div className=" bg-[#1F2025] w-2/4 m-auto text-white rounder-lg mt-7  px-4 py-7">
         <div className="mb-10">
           <h5 className="text-xl font-semibold">Personal information</h5>
           <span style={{"fontSize":"14px","fontWeight":"100"}}>Manage your personal information, here you can edit your fullname , username and password</span>
@@ -123,7 +122,7 @@ function MyAccount() {
             <span className="mr-2">{`${adminInformation[0]["ferst_name"]} ${adminInformation[0]["last_name"]}`}</span>
             <abbr title="edit"><button onClick={()=>handleOpen()}><EditIcon sx={{ fontSize: 17 }}/></button></abbr>
             <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-              <Box sx={style}>
+              <Box sx={style} className="md:w-1/2" >
                   <h6 className="text-xs">EDIT YOUR NAME</h6> 
                   {
                     ErroreMsg === true ? <div className="bg-[#f31c40] mt-2" style={{"fontSize":"18px","padding":"5px"}}>Not all the fields have been filled out correctly!</div> : null
@@ -151,7 +150,7 @@ function MyAccount() {
            <span className="mr-2">{`${adminInformation[0]["username"]}`}</span> 
             <abbr title="edit"><button onClick={()=>handleOpen2()}><EditIcon sx={{ fontSize: 17 }}/></button></abbr>
             <Modal open={open2} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-              <Box sx={style}>
+              <Box sx={style} className="md:w-1/2">
                   <h6 className="text-xs">EDIT YOUR USERNAME</h6> 
                   {
                     ErroreMsg === true ? <div className="bg-[#f31c40] mt-2" style={{"fontSize":"18px","padding":"5px"}}>Not all the fields have been filled out correctly!</div> : null
@@ -175,7 +174,7 @@ function MyAccount() {
             <span>*************</span>
             <abbr title="edit" className="leading-none ml-2"><button onClick={(e)=>handleOpen3(true)}><EditIcon sx={{ fontSize: 17 }}/></button></abbr>
             <Modal open={open3} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-              <Box sx={style}>
+              <Box sx={style} className="md:w-1/2">
                 <h6 className="text-xs">EDIT YOUR PASSWORD</h6> 
                   {
                     ErroreMsg === true ? <div className="bg-[#f31c40] mt-2" style={{"fontSize":"18px","padding":"5px"}}>Failed to change your password, try again!</div> : null
