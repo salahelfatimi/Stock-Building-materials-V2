@@ -1,15 +1,21 @@
-import { useState , useEffect } from "react";
-import Navcontr from "../../assets/Navcontr.png";
+import { useState ,useRef, useEffect } from "react";
+import back from "../../assets/back.png";
 import setting from "../../assets/setting.png";
 import logout from "../../assets/logout.png";
 import user from "../../assets/user.png";
 import adduser from "../../assets/add-user.png";
-import { NavLink } from "react-router-dom";
+import { NavLink , useNavigate  } from "react-router-dom";
 import axios from "axios";
 
 export default function Nav({reloadInChanges}) {
   const [show, setShow] = useState(false);
   const [adminInfo , setAdminInfo] = useState([])
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(-1);
+  };
 
   useEffect(()=>{
     axios.get('http://127.0.0.1:8000/api/getAdminInfo').then((response) => {
@@ -18,9 +24,12 @@ export default function Nav({reloadInChanges}) {
         console.log(error);
       });
   },[reloadInChanges])
+  const ref = useRef(null);
   const handleClickOutside = (event) => {
-
+    if (ref.current && !ref.current.contains(event.target)) {
+      // The user clicked outside the component
       setShow(false);
+    }
     
   };
 
@@ -33,24 +42,31 @@ export default function Nav({reloadInChanges}) {
   return (
     
     <div className="p-2 relative ">
+      
       <div className="w-full bg-[#1F2025] p-3 rounded-lg flex justify-between items-center">
-        <div className="flex gap-4">
-          <div className="flex items-center">
-            <NavLink to="../OptionsPage">
-              <abbr title="return to OptionsPage">
-              <img
-                  src={Navcontr}
+        <div className="flex md:gap-7 gap-4 items-center">
+          <div className="flex  items-center text-center ">
+            <NavLink onClick={handleClick}>
+          <div className=" flex items-center justify-center bg-[#3C3D42] rounded-full py-2 px-2">
+             <img
+                  src={back}
                   alt=""
-                  className="w-12  bg-[#93FBA4] rounded-full"
+                  className="w-8"
                 />
-              </abbr>
+            
+             <span className=" md:block hidden  text-white font-mono font-bold">Go back</span>
+            
+             </div>  
+               
             </NavLink>
           </div>
           <div className="flex flex-col text-white">
             {
             adminInfo.length > 0
             ?
-            <span className="font-mono font-bold ">{`${adminInfo[0]["ferst_name"]} ${adminInfo[0]["last_name"]}`}</span>
+            <NavLink to="../MyAccount">
+              <span className="font-mono font-bold ">{`${adminInfo[0]["ferst_name"]} ${adminInfo[0]["last_name"]}`}</span>
+            </NavLink>
             :
             <span className="font-mono font-bold ">...</span>
             }
@@ -61,7 +77,7 @@ export default function Nav({reloadInChanges}) {
           <button onClick={()=>setShow(!show)}>
             <img src={setting} alt="" className="w-12 " />
           </button>
-          <div
+          <div ref={ref}
             className={`absolute right-10 sm:-bottom-40 -bottom-36   bg-[#4C4D53] py-6 rounded-lg z-40  ${
               show == false ? "hidden" : "block"
             }`}
@@ -81,6 +97,7 @@ export default function Nav({reloadInChanges}) {
             </a>
           </div>
         </div>
+
       </div>
     </div>
   );

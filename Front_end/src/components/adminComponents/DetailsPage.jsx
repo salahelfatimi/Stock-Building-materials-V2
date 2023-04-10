@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import Nav from "./NavAdmin";
 import DetailsPageTable from "./DetailsPageTable"
 import EngineeringOutlinedIcon from '@mui/icons-material/EngineeringOutlined';
@@ -22,9 +22,13 @@ export default function DetailsPage() {
   const id = {id:parseInt(location.hash.slice(1))}
   const blocName = new URLSearchParams(location.search).get('bloc')
 
+  const ref = useRef(null);
   const handleClickOutside = (event) => {
 
-    setShow(false);
+    if (ref.current && !ref.current.contains(event.target)) {
+      // The user clicked outside the component
+      setShow(false);
+    }
   
   };
 
@@ -74,7 +78,7 @@ export default function DetailsPage() {
               </div>
             </div>
             <div>
-            <button onClick={() => setShow(!show)} className="flex gap-1 items-center ">
+            <button ref={ref} onClick={() => setShow(!show)} className="flex gap-1 items-center ">
                 <span className="text-center font-mono font-extrabold text-white uppercase hover:text-[#b1b5ca]">
                   {workerDetails?.fullName}
                 </span>
