@@ -6,6 +6,7 @@ import user from "../../assets/user.png";
 import adduser from "../../assets/add-user.png";
 import { NavLink , useNavigate  } from "react-router-dom";
 import axios from "axios";
+import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 
 export default function Nav({reloadInChanges}) {
   const [show, setShow] = useState(false);
@@ -30,7 +31,6 @@ export default function Nav({reloadInChanges}) {
       // The user clicked outside the component
       setShow(false);
     }
-    
   };
 
   useEffect(() => {
@@ -47,17 +47,10 @@ export default function Nav({reloadInChanges}) {
         <div className="flex md:gap-7 gap-4 items-center">
           <div className="flex  items-center text-center ">
             <NavLink onClick={handleClick}>
-          <div className=" flex items-center justify-center bg-[#3C3D42] rounded-full py-2 px-2">
-             <img
-                  src={back}
-                  alt=""
-                  className="w-8"
-                />
-            
-             <span className=" md:block hidden  text-white font-mono font-bold">Go back</span>
-            
-             </div>  
-               
+              <div className=" flex items-center justify-center bg-[#3C3D42] rounded-full py-2 px-2">
+                <ArrowBackIosNewRoundedIcon className="text-white" fontSize="15px" />
+                <span className=" md:block hidden text-md text-white font-mono ">Back</span>
+              </div>  
             </NavLink>
           </div>
           <div className="flex flex-col text-white">
