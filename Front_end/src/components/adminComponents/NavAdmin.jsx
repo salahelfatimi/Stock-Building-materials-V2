@@ -46,10 +46,10 @@ export default function Nav({reloadInChanges}) {
       <div className="w-full bg-[#1F2025] p-3 rounded-lg flex justify-between items-center">
         <div className="flex md:gap-7 gap-4 items-center">
           <div className="flex  items-center text-center ">
-            <NavLink onClick={handleClick}>
-              <div className=" flex items-center justify-center bg-[#3C3D42] rounded-full py-2 px-2">
+            <NavLink onClick={handleClick} className="md:block hidden">
+              <div className=" flex items-center justify-center bg-[#3C3D42] rounded-full py-2 px-2 transition duration-700 ease-in-out">
                 <ArrowBackIosNewRoundedIcon className="text-white" fontSize="15px" />
-                <span className=" md:block hidden text-md text-white font-mono ">Back</span>
+                <span className=" text-white font-mono ">Back</span>
               </div>  
             </NavLink>
           </div>

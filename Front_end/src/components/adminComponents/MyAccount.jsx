@@ -111,7 +111,7 @@ function MyAccount() {
     return (
       <>
       <Nav reloadInChanges={reloadInChanges}/>
-      <div className=" bg-[#1F2025] w-2/4 m-auto text-white rounder-lg mt-7  px-4 py-7">
+      <div className=" bg-[#1F2025] sm:w-2/4 w-11/12 m-auto text-white rounder-lg mt-7  px-4 py-7">
         <div className="mb-10">
           <h5 className="text-xl font-semibold">Personal information</h5>
           <span style={{"fontSize":"14px","fontWeight":"100"}}>Manage your personal information, here you can edit your fullname , username and password</span>
