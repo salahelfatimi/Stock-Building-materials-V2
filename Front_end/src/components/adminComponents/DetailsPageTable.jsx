@@ -217,7 +217,7 @@ export default function AdminTable(props) {
     // You can customize the error message here
     return (
       <div className="m-auto rounder-lg mt-7 h-96 bg-[#1F2025] flex items-center justify-center">
-        <span className=" text-white font-bold text-xl font-mono">The server is currently down. Please try again later.</span>
+        <span className=" text-[#155a60] font-bold text-xl font-mono">The server is currently down. Please try again later.</span>
       </div>
       );
   }
