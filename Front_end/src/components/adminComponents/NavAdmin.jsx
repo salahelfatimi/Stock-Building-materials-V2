@@ -63,7 +63,7 @@ export default function Nav({reloadInChanges}) {
             :
             <span className="font-mono font-bold ">...</span>
             }
-            <span className="font-mono font-thin ">Responsible</span>
+            <span className="font-mono font-thin text-[#84858b]">Administrator</span>
           </div>
         </div>
         <div className="flex">
