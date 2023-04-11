@@ -7,6 +7,7 @@ import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import {  useLocation } from "react-router-dom";
 import PhoneIcon from '@mui/icons-material/Phone';
+import AxiosRateLimit from 'axios-rate-limit';
 
 import axios from "axios";
 
@@ -31,7 +32,7 @@ export default function DetailsPage() {
     }
   
   };
-
+  const api = AxiosRateLimit(axios.create(), { maxRequests: 5, perMilliseconds: 1000 });
     
   React.useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -41,7 +42,7 @@ export default function DetailsPage() {
   }, []);
 
   React.useEffect(()=>{
-    axios.post("http://127.0.0.1:8000/api/getControlerInfo",id).then(res=>{
+    api.post("http://127.0.0.1:8000/api/getControlerInfo",id).then(res=>{
       if(res.data.message === 'good'){
         setWorkerDetails(res.data.controlerinfo)
       }
