@@ -38,8 +38,6 @@ export default function Nav({fullName , speciality}) {
           </a>
         </div>
       </div>
-      
     </div>
-    
   );
 }
