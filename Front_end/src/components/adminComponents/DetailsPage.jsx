@@ -1,37 +1,34 @@
-import React, { useState,useRef } from "react";
-import Nav from "./NavAdmin";
-import DetailsPageTable from "./DetailsPageTable"
 import EngineeringOutlinedIcon from '@mui/icons-material/EngineeringOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
-import {  useLocation } from "react-router-dom";
 import PhoneIcon from '@mui/icons-material/Phone';
+import DetailsPageTable from "./DetailsPageTable"
+import {  useLocation } from "react-router-dom";
+import React, { useState,useRef } from "react";
 import AxiosRateLimit from 'axios-rate-limit';
-
+import Nav from "./NavAdmin";
 import axios from "axios";
 
 export default function DetailsPage() {
- 
   const [show, setShow] = useState(false);
   const [searchdate, setSearchdate] = useState("");
   const [searchbloc, setSearchbloc] = useState("");
   const [workerDetails , setWorkerDetails] = React.useState([])
   const location = useLocation();
   
- 
   const id = {id:parseInt(location.hash.slice(1))}
   const blocName = new URLSearchParams(location.search).get('bloc')
 
   const ref = useRef(null);
   const handleClickOutside = (event) => {
-
     if (ref.current && !ref.current.contains(event.target)) {
       // The user clicked outside the component
       setShow(false);
     }
-  
   };
+
+  // get max requests is 5 in 1000 milliseconds
   const api = AxiosRateLimit(axios.create(), { maxRequests: 5, perMilliseconds: 1000 });
     
   React.useEffect(() => {
@@ -56,16 +53,12 @@ export default function DetailsPage() {
   const year = curenteDate.getFullYear()
   const date=year+"-"+month
 
-
- 
     return (
       <div>
         <Nav />
         <div className="p-2">
           <section className="pb-2 flex flex-col md:items-center space-y-1 md:space-y-0 md:flex-row md:justify-between gap-2">
-            
             <div className="flex items-center gap-2">
-             
               <div className={blocName!==null ? "hidden":""}>
                 <select defaultValue="all_bloc"  onChange={(e) => setSearchbloc(e.target.value)} className="bg-[#3C3D42] p-3  h-9 sm:w-64 text-center rounded-xl font-mono  font-medium focus:outline none  text-white text-xs ">
                   <option value=''>All Bloc</option>
@@ -81,7 +74,6 @@ export default function DetailsPage() {
               </div>
               <div className={blocName!==null ? "":"hidden"}>
               <div className=" bg-[#3C3D42] sm:px-2 px-1 py-1.5 rounded-xl">
-              
                 <span className=" text-white font-bold font-mono">Bloc :</span> <span className=" text-white font-mono">{blocName}</span> 
               </div>
               </div>
