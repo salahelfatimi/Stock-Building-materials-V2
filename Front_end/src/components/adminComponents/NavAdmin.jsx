@@ -67,7 +67,7 @@ export default function Nav({reloadInChanges}) {
           </div>
         </div>
         <div className="flex">
-          <button onClick={()=>setShow(!show)}>
+          <button onClick={()=>setShow(!show)} >
             <img src={setting} alt="" className="w-12 " />
           </button>
           <div ref={ref}
