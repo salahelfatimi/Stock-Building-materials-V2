@@ -16,6 +16,7 @@ import { visuallyHidden } from "@mui/utils";
 import { NavLink ,Link } from "react-router-dom";
 import axios from "axios";
 
+// this for datatable 
 function createData(Bloc, Controller, Specialty, See_detail) {return { Bloc, Controller, Specialty, See_detail,};}
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) { return -1;}
@@ -104,7 +105,7 @@ EnhancedTableHead.propTypes = {
   rowCount: PropTypes.number.isRequired,
 };
 
-
+// start component AdminTable
 export default function AdminTable(searchnmame) {
   const serachName = searchnmame.searchnmame
   const [blocWorker,setBlocWorker] = React.useState([])
@@ -139,11 +140,9 @@ export default function AdminTable(searchnmame) {
   ));
   
   /*-----------------------------------end------------------------------------*/
-  
-  
 
 
-
+  /*------------------------------this for datatable------------------------------------*/
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("Controller");
   const [page, setPage] = React.useState(0);
@@ -166,7 +165,7 @@ export default function AdminTable(searchnmame) {
   };
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
+/*-----------------------------------end------------------------------------*/
 
     if (isLoading) {
       return (
@@ -176,6 +175,7 @@ export default function AdminTable(searchnmame) {
       )
     }
   
+    // this is for if there a probleme in server or server is shut down
     if (error) {
       // You can customize the error message here
       return (

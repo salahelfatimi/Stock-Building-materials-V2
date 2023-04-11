@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import AllControlesTable from "./AllControlesTable";
+import React, { useState } from "react";
 import Nav from "./NavAdmin";
 
 export default function AllControlersPage() {
@@ -7,7 +7,6 @@ export default function AllControlersPage() {
   const [searchdate, setSearchdate] = useState("");
   
   var curenteDate = new Date();
-  
   const month = curenteDate.getMonth()<10?`0${curenteDate.getMonth()+1}`:curenteDate.getMonth()+1
   const year = curenteDate.getFullYear()
   const date=year+"-"+month

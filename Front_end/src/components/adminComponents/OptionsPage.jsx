@@ -1,7 +1,7 @@
-import React from "react";
-import { NavLink} from "react-router-dom";
-import building from "../../assets/buildings.png";
 import Controler from "../../assets/Controller.png";
+import building from "../../assets/buildings.png";
+import { NavLink} from "react-router-dom";
+import React from "react";
 
 export default function OptionsPage() {
   return (

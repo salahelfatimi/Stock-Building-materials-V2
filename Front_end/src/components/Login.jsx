@@ -6,10 +6,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [loginData , setLoginData] =useState({ username:"", password:"" });
   const [valid , setValid] = useState(true)
-  const [error , setError] = useState({
-    "username" : '' ,
-    "password"  : '' ,
-  })
+  const [error , setError] = useState({ "username" : '' , "password"  : ''})
 
   const handlChange=(e)=>{
     const name=e.target.name;
@@ -30,16 +27,11 @@ export default function Login() {
       }
     }
    
-   
-
-
     axios.post("http://127.0.0.1:8000/api/login",loginData).then((res)=>{
-     
       if(res.data.success === false){
-
         setValid(false)
-
-      }else{
+      }
+      else{
         setValid(true)
         if(res.data.whoLogged === "admin"){
           navigate("/admin")
@@ -88,7 +80,6 @@ export default function Login() {
               name="username"
               className="bg-[#4B484C] w-full h-10 rounded-md pl-2 focus:outline-none"
               autoComplete="off"
-
               required
             />
              <div>{error.username}</div>

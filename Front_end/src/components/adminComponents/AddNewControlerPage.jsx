@@ -13,7 +13,6 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export default function AddNewControler() {
   /*----------this state for show the access message----------*/
   const [open, setOpen] = React.useState(false);
-
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -21,7 +20,6 @@ export default function AddNewControler() {
     setOpen(false);
   };
    /*-------------------------end-----------------------------*/
-
 
    var curenteDate = new Date();
    const day=curenteDate.getDate()<10?`0${curenteDate.getDate()}`:curenteDate.getDate()

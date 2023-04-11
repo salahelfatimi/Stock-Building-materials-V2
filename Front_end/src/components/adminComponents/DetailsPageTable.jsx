@@ -213,6 +213,7 @@ export default function AdminTable(props) {
     )
   }
 
+  // this is for if there a probleme in server or server is shut down
   if (error) {
     // You can customize the error message here
     return (
