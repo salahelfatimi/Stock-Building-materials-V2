@@ -26,7 +26,7 @@ export default function Nav({fullName , speciality}) {
             <span className="font-mono font-bold">
               {fullName}
             </span>
-            <span className="font-mono font-thin ">{speciality}</span>
+            <span className="font-mono font-thin text-[#84858b]">{speciality}</span>
           </div>
         </div>
         <div className="flex">
