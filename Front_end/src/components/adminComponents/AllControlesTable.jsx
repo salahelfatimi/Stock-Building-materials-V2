@@ -209,7 +209,7 @@ export default function AllControlesTable({searchName,searchdate} ) {
     // You can customize the error message here
     return (
       <div className="m-auto rounder-lg mt-7 h-96 bg-[#1F2025] flex items-center justify-center">
-        <span className=" text-white font-bold text-xl font-mono text-[#155a60]">The server is currently down. Please try again later.</span>
+        <span className=" font-bold text-xl font-mono text-[#155a60]">The server is currently down. Please try again later.</span>
       </div>
       );
   }
