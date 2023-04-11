@@ -1,6 +1,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import { alpha } from "@mui/material/styles";
+import Skeleton from '@mui/material/Skeleton';
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -110,7 +111,9 @@ EnhancedTableHead.propTypes = {
 export default function AllControlesTable({searchName,searchdate} ) {
   const [workers , setWorkers]= React.useState([])
   const [searchResult , setSearchResult] = React.useState([])
- 
+
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
 
   /*-------------------------get data of all workers-------------------------*/
  
@@ -119,9 +122,10 @@ export default function AllControlesTable({searchName,searchdate} ) {
       axios.get("http://127.0.0.1:8000/api/workerDetails").then(res=>{
         setSearchResult(res.data)
         setWorkers(res.data)
-       
-      }).catch(err=>{
-        console.error(err);
+        setIsLoading(false);
+      }).catch(error => {
+        setError(error.message);
+        setIsLoading(false);
       })
     }else if (searchdate !=="" && searchName === "" ){
       axios.post("http://127.0.0.1:8000/api/workerDetailsParMonth",{date:searchdate}).then(res=>{
@@ -129,8 +133,10 @@ export default function AllControlesTable({searchName,searchdate} ) {
           return res.data.map((val)=> val.id).indexOf(v.id) == i
         })
         setSearchResult(result)
-      }).catch(err=>{
-        console.error(err);
+        setIsLoading(false);
+      }).catch(error => {
+        setError(error.message);
+        setIsLoading(false);
       })
     }else if(searchName !== "" && searchdate ==="" ){
       const regex = new RegExp(searchName.toLowerCase(), 'g');
@@ -142,8 +148,10 @@ export default function AllControlesTable({searchName,searchdate} ) {
         const regex = new RegExp(searchName.toLowerCase(), 'g');
         const search = res.data.filter((ele) => ele.fullName.toLowerCase().match(regex));
         setSearchResult(search);
-      }).catch(err=>{
-        console.error(err);
+        setIsLoading(false);
+      }).catch(error => {
+        setError(error.message);
+        setIsLoading(false);
       })
     }
   },[searchName,searchdate])
@@ -189,7 +197,22 @@ export default function AllControlesTable({searchName,searchdate} ) {
   /*--------------------------------------------------------------------------- */
     //                                 end                                    //
   /*--------------------------------------------------------------------------- */
+  if (isLoading) {
+    return (
+    <div className="m-auto rounder-lg mt-7 h-80">
+        <Skeleton variant="rectangular" sx={{ bgcolor: '#1F2025' }} animation="wave" width={"100%"} height={"100%"} />
+    </div>
+    )
+  }
 
+  if (error) {
+    // You can customize the error message here
+    return (
+      <div className="m-auto rounder-lg mt-7 h-96 bg-[#1F2025] flex items-center justify-center">
+        <span className=" text-white font-bold text-xl font-mono">The server is currently down. Please try again later.</span>
+      </div>
+      );
+  }
   if(searchResult.length){
     return (
       <Box sx={{ width: '100%' }}>

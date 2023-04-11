@@ -1,5 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
+import Skeleton from '@mui/material/Skeleton';
 
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
@@ -55,7 +56,7 @@ const headCells = [
     id: "achieve",
     numeric: true,
     disablePadding: false,
-    label: "Total Quantity of Designation",
+    label: "To-Be-Completed Quantity ",
   },
   {
     id: "rendement",
@@ -114,6 +115,8 @@ export default function AdminTable(props) {
 
   const location = useLocation();
   const [workerDetails , setWorkerDetails] = React.useState([])
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
 
   const id = {id:parseInt(location.hash.slice(1))}
   const blocName = new URLSearchParams(location.search).get('bloc')===null ? blocserach : new URLSearchParams(location.search).get('bloc') ;
@@ -126,8 +129,10 @@ export default function AdminTable(props) {
     if(blocName === ""  && datesearch===""  ){
       axios.post("http://127.0.0.1:8000/api/Countcontrolerqty",id).then(res=>{
         setWorkerDetails(res.data)
-      }).catch(err=>{
-        console.error(err)
+        setIsLoading(false);
+      }).catch(error => {
+        setError(error.message);
+        setIsLoading(false);
       })
     //-----------------------------------------------------------------------------------------------------------
 
@@ -135,18 +140,21 @@ export default function AdminTable(props) {
     }else if(blocName !== "" && datesearch===""  ) {
       axios.post("http://127.0.0.1:8000/api/CountcontrolerqtyParBloc",parameterSend).then(res=>{
       setWorkerDetails(res.data)
-      }).catch(err=>{
-        console.error(err)
-      }) 
+      setIsLoading(false);
+      }).catch(error => {
+        setError(error.message);
+        setIsLoading(false);
+      })
     //-----------------------------------------------------------------------------------------------------------
 
     //-------------------------------- if date found will search by date -----------------------------------------
     }else if(datesearch!=="" && blocName === ""  ){
       axios.post("http://127.0.0.1:8000/api/CountcontrolerqtyParDate",parameterSendDate).then(res=>{
         setWorkerDetails(res.data)
-       
-        }).catch(err=>{
-          console.error(err)
+        setIsLoading(false);
+        }).catch(error => {
+          setError(error.message);
+          setIsLoading(false);
         })
     //--------------------------------------------------------------------------------------------------------------
 
@@ -154,9 +162,10 @@ export default function AdminTable(props) {
     }else if (datesearch!=="" && blocName !== "" ){
       axios.post("http://127.0.0.1:8000/api/CountcontrolerqtyParDateBloc",parameterSend).then(res=>{
         setWorkerDetails(res.data)
-       
-        }).catch(err=>{
-          console.error(err)
+        setIsLoading(false);
+        }).catch(error => {
+          setError(error.message);
+          setIsLoading(false);
         })
     }
     //----------------------------------------------------------------------------------------
@@ -194,6 +203,24 @@ export default function AdminTable(props) {
   /*--------------------------------------------------------------------------- */
     //                                 end                                    //
   /*--------------------------------------------------------------------------- */
+
+
+  if (isLoading) {
+    return (
+    <div className="m-auto rounder-lg mt-7 h-80">
+        <Skeleton variant="rectangular" sx={{ bgcolor: '#1F2025' }} animation="wave" width={"100%"} height={"100%"} />
+    </div>
+    )
+  }
+
+  if (error) {
+    // You can customize the error message here
+    return (
+      <div className="m-auto rounder-lg mt-7 h-96 bg-[#1F2025] flex items-center justify-center">
+        <span className=" text-white font-bold text-xl font-mono">The server is currently down. Please try again later.</span>
+      </div>
+      );
+  }
 
   if(workerDetails.length){
     return (

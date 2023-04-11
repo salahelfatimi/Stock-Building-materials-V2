@@ -4,6 +4,7 @@ import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
+import Skeleton from '@mui/material/Skeleton';
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
@@ -108,6 +109,8 @@ export default function AdminTable(searchnmame) {
   const serachName = searchnmame.searchnmame
   const [blocWorker,setBlocWorker] = React.useState([])
   const [searchResult , setSearchResult] = React.useState([])
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
  
 
   /*-------------------------get data of all workers-------------------------*/
@@ -115,9 +118,11 @@ export default function AdminTable(searchnmame) {
     if (serachName===""){
     axios.get("http://127.0.0.1:8000/api/getBlocInfo").then(res=>{
       setBlocWorker(res.data)
+      setIsLoading(false);
       setSearchResult(res.data)
-    }).catch(err=>{
-      console.error(err)
+    }).catch(error => {
+      setError(error.message);
+      setIsLoading(false);
     })
   }else if(serachName!==""){
     const regex = new RegExp(serachName.toLowerCase(), 'g');
@@ -161,6 +166,24 @@ export default function AdminTable(searchnmame) {
   };
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
+
+    if (isLoading) {
+      return (
+      <div className="m-auto rounder-lg mt-7 h-80">
+          <Skeleton variant="rectangular" sx={{ bgcolor: '#1F2025' }} animation="wave" width={"100%"} height={"100%"} />
+      </div>
+      )
+    }
+  
+    if (error) {
+      // You can customize the error message here
+      return (
+        <div className="m-auto rounder-lg mt-7 h-96 bg-[#1F2025] flex items-center justify-center">
+          <span className=" text-white font-bold text-xl font-mono">The server is currently down. Please try again later.</span>
+        </div>
+        );
+    }
 
   if(searchResult.length){
     return (
