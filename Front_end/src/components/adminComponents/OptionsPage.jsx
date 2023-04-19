@@ -20,7 +20,7 @@ export default function OptionsPage() {
             <img src={building} alt="" />
           </div>
           <div className=" text-center text-white font-mono font-extrabold text-3xl">
-            <span>Apartment complex</span>
+            <span>Bloc</span>
           </div>
         </NavLink>
       </div>

@@ -23,12 +23,16 @@ class adminDate extends Controller
 
     public function Countcontrolerqty(Request $request){
 
+        $Countdaysworked = daysworked::where('idControler', $request->id)->count('idControler');
         $Countcontrolerqty=chicklist::select('designation',
             chicklist::raw('SUM(chicklists.qtyCompleted) as qtyCompleted'),
             chicklist::raw('SUM(chicklists.qtyCompleted + chicklists.remainingQty) as toachife') ,
-            chicklist::raw('CEILING(SUM(chicklists.qtyCompleted) / COUNT(D.idControler)) as rendement'))
+            chicklist::raw('CEILING(SUM(chicklists.qtyCompleted) / '.$Countdaysworked.') as rendement'))
 
-        ->leftJoin('daysworkeds as D', 'D.idControler', '=', 'chicklists.idControler')
+            ->leftJoin('daysworkeds as D',function($join){
+                $join->on( 'D.idControler', '=','chicklists.idControler')
+                ->on('chicklists.blocName','=','D.blocName');
+            })
         ->groupBy('designation')
         ->where('chicklists.idControler',$request->id)
         ->get();
@@ -37,11 +41,11 @@ class adminDate extends Controller
     }
 
     public function CountcontrolerqtyParBloc(Request $request){
-
+        $Countdaysworked = daysworked::where('idControler', $request->id)->where('blocName', $request->blocName)->count('idControler');
         $Countcontrolerqty=chicklist::select('designation',
             chicklist::raw('SUM(chicklists.qtyCompleted) as qtyCompleted'),
             chicklist::raw('SUM(chicklists.qtyCompleted + chicklists.remainingQty) as toachife') ,
-            chicklist::raw('CEILING(SUM(chicklists.qtyCompleted) / COUNT(D.idControler)) as rendement'))
+            chicklist::raw('CEILING(SUM(chicklists.qtyCompleted) / '.$Countdaysworked.') as rendement'))
 
         ->leftJoin('daysworkeds as D',function($join){
             $join->on( 'D.idControler', '=','chicklists.idControler')
@@ -58,11 +62,13 @@ class adminDate extends Controller
 
 
     public function CountcontrolerqtyParDate(Request $request){
+
         $date = $request->input('date');
+        $Countdaysworked = daysworked::where('idControler', $request->id)->where(DB::raw("(DATE_FORMAT(dateValidation, '%Y-%m'))"), '=', [$date])->count('idControler');
         $Countcontrolerqty=chicklist::select('designation',
             chicklist::raw('SUM(chicklists.qtyCompleted) as qtyCompleted'),
             chicklist::raw('SUM(chicklists.qtyCompleted + chicklists.remainingQty) as toachife') ,
-            chicklist::raw('CEILING(SUM(chicklists.qtyCompleted) / COUNT(D.idControler)) as rendement'))
+            chicklist::raw('CEILING(SUM(chicklists.qtyCompleted) / '.$Countdaysworked.') as rendement'))
 
             ->leftJoin('daysworkeds as D',function($join){
                 $join->on( 'D.idControler', '=','chicklists.idControler')
@@ -78,10 +84,12 @@ class adminDate extends Controller
 
     public function CountcontrolerqtyParDateBloc(Request $request){
         $date = $request->input('date');
+        $Countdaysworked = daysworked::where('idControler', $request->id) ->where('blocName',$request->blocName)->where(DB::raw("(DATE_FORMAT(dateValidation, '%Y-%m'))"), '=', [$date])->count('idControler');
+
         $Countcontrolerqty=chicklist::select('designation',
             chicklist::raw('SUM(chicklists.qtyCompleted) as qtyCompleted'),
             chicklist::raw('SUM(chicklists.qtyCompleted + chicklists.remainingQty) as toachife') ,
-            chicklist::raw('CEILING(SUM(chicklists.qtyCompleted) / COUNT(D.idControler)) as rendement'))
+            chicklist::raw('CEILING(SUM(chicklists.qtyCompleted) / '.$Countdaysworked.') as rendement'))
 
             ->leftJoin('daysworkeds as D',function($join){
                 $join->on( 'D.idControler', '=','chicklists.idControler')
@@ -196,6 +204,6 @@ class adminDate extends Controller
         ];
         echo json_encode($returnData);
 
-    
+
     }
 }

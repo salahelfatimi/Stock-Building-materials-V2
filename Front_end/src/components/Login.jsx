@@ -6,10 +6,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [loginData , setLoginData] =useState({ username:"", password:"" });
   const [valid , setValid] = useState(true)
-  const [error , setError] = useState({
-    "username" : '' ,
-    "password"  : '' ,
-  })
+  
 
   const handlChange=(e)=>{
     const name=e.target.name;
@@ -21,14 +18,6 @@ export default function Login() {
 
   function handelSbmite(){
 
-    const form = document.forms[0]
-    if(form.username.value==='' || form.password.value===''){
-      if(form.username.value===''){
-        setError({'username':'enter your username '})
-      }else if(form.password.value===''){
-        setError({'password':'enter your password '})
-      }
-    }
    
    
 
@@ -91,7 +80,7 @@ export default function Login() {
 
               required
             />
-             <div>{error.username}</div>
+          
           </div>
           <div>
             <label htmlFor="password" className=" text-lg font-mono ">
@@ -106,7 +95,7 @@ export default function Login() {
               className="bg-[#4B484C] w-full h-10 rounded-md pl-2 focus:outline-none"
               required
             />
-           <div>{error.password}</div>
+       
           </div>
         </form>
         <div className="float-right">
