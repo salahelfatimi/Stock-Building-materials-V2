@@ -1,11 +1,11 @@
-import Nav from "./NavAdmin"
+import { useState , useEffect , forwardRef } from "react";
 import EditIcon from '@mui/icons-material/Edit';
 import Skeleton from '@mui/material/Skeleton';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import { useState , useEffect , forwardRef } from "react";
+import Nav from "./NavAdmin"
 import axios from "axios";
 
 // this for style model
@@ -48,7 +48,6 @@ function MyAccount() {
       });
   },[reloadInChanges])
 
-
   const EditName=(e)=>{
     e.preventDefault()
     var first_name = document.getElementById("first_name").value
@@ -66,6 +65,7 @@ function MyAccount() {
         });
     }
   }
+
   const EditUsername=(e)=>{
     e.preventDefault()
     var username = document.getElementById("username").value
@@ -82,6 +82,7 @@ function MyAccount() {
         });
     }
   }
+
   const EditPassword=(e)=>{
     e.preventDefault()
     var old_password = document.getElementById("old_password").value
@@ -104,9 +105,8 @@ function MyAccount() {
       });
     }
   }
-
-
   /*--------------------------end functions part-----------------*/
+  
   if(adminInformation.length > 0){
     return (
       <>

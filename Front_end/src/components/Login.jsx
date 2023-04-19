@@ -23,12 +23,10 @@ export default function Login() {
 
 
     axios.post("http://127.0.0.1:8000/api/login",loginData).then((res)=>{
-     
       if(res.data.success === false){
-
         setValid(false)
-
-      }else{
+      }
+      else{
         setValid(true)
         if(res.data.whoLogged === "admin"){
           navigate("/admin")
@@ -77,7 +75,6 @@ export default function Login() {
               name="username"
               className="bg-[#4B484C] w-full h-10 rounded-md pl-2 focus:outline-none"
               autoComplete="off"
-
               required
             />
           

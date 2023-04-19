@@ -16,6 +16,7 @@ import { visuallyHidden } from "@mui/utils";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 
+// this for datatable
 function createData(name, Id_card, Phone, Specialty, See_detail) { return { name, Id_card, Phone, Specialty, See_detail,};}
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) { return -1;}
@@ -108,10 +109,11 @@ EnhancedTableHead.propTypes = {
   rowCount: PropTypes.number.isRequired,
 };
 
+
+// start component AllControlesTable
 export default function AllControlesTable({searchName,searchdate} ) {
   const [workers , setWorkers]= React.useState([])
   const [searchResult , setSearchResult] = React.useState([])
-
   const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
 
@@ -205,6 +207,7 @@ export default function AllControlesTable({searchName,searchdate} ) {
     )
   }
 
+  // this is for if there a probleme in server or server is shut down
   if (error) {
     // You can customize the error message here
     return (
@@ -213,6 +216,7 @@ export default function AllControlesTable({searchName,searchdate} ) {
       </div>
       );
   }
+
   if(searchResult.length){
     return (
       <Box sx={{ width: '100%' }}>
@@ -238,7 +242,6 @@ export default function AllControlesTable({searchName,searchdate} ) {
                     return (
                       <TableRow
                         hover
-                        // onClick={(event) => handleClick(event, row.name)}
                         tabIndex={-1}
                         key={index}
                       >
