@@ -128,6 +128,7 @@ export default function AdminTable(props) {
    //------------------------------ if not serach found ---------------------------------------------------------
     if(blocName === ""  && datesearch===""  ){
       axios.post("http://127.0.0.1:8000/api/Countcontrolerqty",id).then(res=>{
+        
         setWorkerDetails(res.data)
         setIsLoading(false);
       }).catch(error => {

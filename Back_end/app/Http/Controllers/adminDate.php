@@ -106,14 +106,18 @@ class adminDate extends Controller
 
 
     public function getControlerInfo(Request $request){
-
-        $controlerregester = controlerregester::with('daysworked')->find($request->id);
+        $daysworked = DB::table('daysworkeds')
+             ->select('blocName')
+             ->groupBy('blocName')
+             ->get();
+        $controlerregester = controlerregester::find($request->id);
 
         $controlerInfo = [
             "message" => 'good',
             "fullName" => $controlerregester->fullName,
             "speciality" => $controlerregester->speciality,
             "controlerinfo" => $controlerregester,
+            "daysworked"=>$daysworked,
         ];
 
         return  json_encode($controlerInfo);
@@ -130,7 +134,10 @@ class adminDate extends Controller
 
     }
     public function getBlocInfo(){
-       $BlocInfo=daysworked::with('controlerregesters:id,speciality,fullName')->select('blocName','idControler')->get();
+        $BlocInfo = daysworked::with('controlerregesters:id,speciality,fullName')
+        ->select('blocName', 'idControler')
+        ->groupBy('blocName', 'idControler')
+        ->get();
 
         return  json_encode($BlocInfo);
 

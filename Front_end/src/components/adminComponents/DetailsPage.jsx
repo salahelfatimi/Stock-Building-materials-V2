@@ -15,6 +15,7 @@ export default function DetailsPage() {
   const [searchdate, setSearchdate] = useState("");
   const [searchbloc, setSearchbloc] = useState("");
   const [workerDetails , setWorkerDetails] = React.useState([])
+  const [workerBloc , setWorkerBloc] = React.useState([])
   const location = useLocation();
   
   const id = {id:parseInt(location.hash.slice(1))}
@@ -42,6 +43,7 @@ export default function DetailsPage() {
     api.post("http://127.0.0.1:8000/api/getControlerInfo",id).then(res=>{
       if(res.data.message === 'good'){
         setWorkerDetails(res.data.controlerinfo)
+        setWorkerBloc(res.data.daysworked)
       }
     }).catch(err=>{
       console.error(err)
@@ -63,7 +65,7 @@ export default function DetailsPage() {
                 <select defaultValue="all_bloc"  onChange={(e) => setSearchbloc(e.target.value)} className="bg-[#3C3D42] p-3  h-9 sm:w-64 text-center rounded-xl font-mono  font-medium focus:outline none  text-white text-xs ">
                   <option value=''>All Bloc</option>
                   {
-                    workerDetails['daysworked']?.map((ele,index)=>(
+                    workerBloc?.map((ele,index)=>(
                       <option value={ele.blocName} key={index}>{ele.blocName}</option>
                     ))
                   }
