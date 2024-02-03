@@ -32,7 +32,11 @@ Inventory management is a web application designed to streamline project managem
  
     cd Back_end
     php artisan migrate
- 
+
+*Run the seeder:*
+
+    cd Back_end
+    php artisan db:seed --class=admin
 
 # Usage
 
@@ -54,8 +58,8 @@ Inventory management is a web application designed to streamline project managem
 
 After running the database migrations, you can login to the admin account with the following credentials:
 
-- Username: root
-- Password: 1234
+- Username: admin
+- Password: admin
 
 Please make sure to change the admin login credentials as soon as possible for security purposes.
 
