@@ -57,8 +57,8 @@ class controleDate extends Controller
         $controlerDetails=controlerregester::find($request->id);
 
         $controler = [
-            "fullName" => $controlerDetails->pluck('fullName')->first(),
-            "speciality" => $controlerDetails->pluck('speciality')->first(),
+            "fullName" => $controlerDetails->fullName,
+            "speciality" => $controlerDetails->speciality,
         ];
 
         return  json_encode($controler);
