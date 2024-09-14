@@ -15,12 +15,12 @@ class admin extends Seeder
     public function run(): void
     {
         admins::create([
-            'username'=>'root',
-            'ferst_name'=>'root',
-            'last_name'=>'root',
-            'password'=>'1234',
+            'username'=>'admin',
+            'ferst_name'=>'admin',
+            'last_name'=>'',
+            'password'=>'admin',
             'token' => Str::random(10)
         ]);;
-    
+
     }
 }
